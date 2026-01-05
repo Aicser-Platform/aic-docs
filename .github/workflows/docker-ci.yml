@@ -1,0 +1,168 @@
+name: Docker CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  docker-lint:
+    name: Lint Dockerfiles
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Lint Dockerfile.docs
+        run: |
+          echo "Linting Dockerfile.docs..."
+          docker run --rm -i hadolint/hadolint < Dockerfile.docs || echo "Completed with warnings"
+
+      - name: Lint Dockerfile.docs.dev
+        run: |
+          echo "Linting Dockerfile.docs.dev..."
+          docker run --rm -i hadolint/hadolint < Dockerfile.docs.dev || echo "Completed with warnings"
+
+  docker-build-test:
+    name: Build and Test Docker Images
+    runs-on: ubuntu-latest
+    needs: docker-lint
+    strategy:
+      matrix:
+        dockerfile: [Dockerfile.docs, Dockerfile.docs.dev]
+        include:
+          - dockerfile: Dockerfile.docs
+            image: aicser-docs
+            port: 3005
+          - dockerfile: Dockerfile.docs.dev
+            image: aicser-docs-dev
+            port: 3006
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          echo "Building ${{ matrix.dockerfile }}..."
+          docker build -f ${{ matrix.dockerfile }} -t ${{ matrix.image }}:test .
+
+      - name: Test Docker image
+        run: |
+          echo "Testing ${{ matrix.image }}..."
+          docker run -d --name test-container -p ${{ matrix.port }}:3005 ${{ matrix.image }}:test
+          sleep 20
+          
+          # Check if container is running
+          docker ps | grep test-container || (docker logs test-container && exit 1)
+          
+          # Health check
+          echo "Running health check..."
+          curl -f http://localhost:${{ matrix.port }}/health || (docker logs test-container && exit 1)
+          
+          # Check main endpoint
+          echo "Checking main endpoint..."
+          curl -I http://localhost:${{ matrix.port }} || (docker logs test-container && exit 1)
+          
+          echo "✅ Docker image test passed!"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker stop test-container || true
+          docker rm test-container || true
+
+  docker-compose-test:
+    name: Test Docker Compose
+    runs-on: ubuntu-latest
+    needs: docker-lint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate docker-compose.docs.yml
+        run: |
+          echo "Validating docker-compose configuration..."
+          docker-compose -f docker-compose.docs.yml config
+
+      - name: Build services
+        run: |
+          echo "Building Docker Compose services..."
+          docker-compose -f docker-compose.docs.yml build
+
+      - name: Start services
+        run: |
+          echo "Starting services..."
+          docker-compose -f docker-compose.docs.yml up -d
+          sleep 30
+
+      - name: Check service health
+        run: |
+          echo "Checking service health..."
+          docker-compose -f docker-compose.docs.yml ps
+          
+          # Health check
+          curl -f http://localhost:3005/health || (docker-compose -f docker-compose.docs.yml logs && exit 1)
+          
+          # Check main endpoint
+          curl -I http://localhost:3005 || (docker-compose -f docker-compose.docs.yml logs && exit 1)
+          
+          echo "✅ Docker Compose test passed!"
+
+      - name: Display logs
+        if: always()
+        run: |
+          docker-compose -f docker-compose.docs.yml logs
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker-compose -f docker-compose.docs.yml down -v
+
+  docker-security-scan:
+    name: Security Scan Docker Images
+    runs-on: ubuntu-latest
+    needs: docker-build-test
+    if: github.event_name == 'push'
+    strategy:
+      matrix:
+        dockerfile: [Dockerfile.docs, Dockerfile.docs.dev]
+        include:
+          - dockerfile: Dockerfile.docs
+            image: aicser-docs
+          - dockerfile: Dockerfile.docs.dev
+            image: aicser-docs-dev
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image for scanning
+        run: |
+          docker build -f ${{ matrix.dockerfile }} -t ${{ matrix.image }}:scan .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ matrix.image }}:scan
+          format: 'table'
+          exit-code: '0'
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+
+      - name: Run Trivy JSON report
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ matrix.image }}:scan
+          format: 'json'
+          output: 'trivy-results-${{ matrix.image }}.json'
+
+      - name: Upload Trivy results
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-results-${{ matrix.image }}
+          path: trivy-results-${{ matrix.image }}.json
+          retention-days: 30
