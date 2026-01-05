@@ -1,3 +1,4 @@
+# aic-docs
 # Aicser Platform Documentation
 
 Comprehensive documentation for the Aicser Platform - the next-generation AI-first business intelligence and visualization tool.
