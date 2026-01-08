@@ -32,7 +32,7 @@ const config = {
   },
   
   // Docusaurus presets
-  presets: [
+  presets: [  
     [
       'classic',
       {
@@ -45,6 +45,8 @@ const config = {
           showLastUpdateTime: true,
           // Serve docs from root of baseUrl to avoid double /docs/docs/ paths
           routeBasePath: '/',
+          // Enable OpenAPI doc items
+          docItemComponent: '@theme/ApiItem',
         },
         blog: false,
         theme: {
@@ -60,12 +62,44 @@ const config = {
     ],
   ],
   
+  // Plugins configuration
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'api',
+        docsPluginId: 'classic',
+        config: {
+          aicser: {
+            specPath: 'static/openapi.json',
+            outputDir: 'src/docs/reference/api',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+            downloadUrl: '/openapi.json',
+            hideSendButton: false,
+            showSchemas: true,
+          },
+        },
+      },
+    ],
+  ],
+  
+  // Themes configuration
+  themes: ['docusaurus-theme-openapi-docs'],
+  
   // Global configuration
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   
   // Theme configuration
   themeConfig: {
+    // API documentation configuration
+    api: {
+      authPersistance: 'localStorage',
+      requestTimeout: 30000,
+    },
     // Replace with project's social card
     image: 'img/aicser-docs-social-card.jpg',
     navbar: {
@@ -79,6 +113,12 @@ const config = {
           sidebarId: 'docs',
           position: 'left',
           label: 'Documentation',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'reference',
+          position: 'left',
+          label: 'API Reference',
         },
         // REMOVED: Reference sidebar that doesn't exist
         {

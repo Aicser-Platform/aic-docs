@@ -48,6 +48,32 @@
 }
 
 /* Code block enhancements */
+
+/* Lucide Icon Styling */
+.lucide-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.4em;
+  flex-shrink: 0;
+}
+
+h1 .lucide-icon {
+  margin-right: 0.5em;
+}
+
+h2 .lucide-icon {
+  margin-right: 0.4em;
+}
+
+h3 .lucide-icon,
+h4 .lucide-icon {
+  margin-right: 0.3em;
+}
+
+/* Ensure icons work in dark mode */
+[data-theme='dark'] .lucide-icon {
+  color: currentColor;
+}
 .prism-code {
   border-radius: 8px;
   border: 1px solid var(--ifm-color-emphasis-300);

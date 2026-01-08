@@ -1,0 +1,33 @@
+---
+id: loginrequest
+title: "LoginRequest"
+description: ""
+sidebar_label: "LoginRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"email":"user@example.com","password":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"LoginRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","required":["email","password"],"properties":{"email":{"type":"string","format":"email","description":"User email address"},"password":{"type":"string","format":"password","description":"User password"}},"title":"LoginRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            
