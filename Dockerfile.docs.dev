@@ -12,7 +12,13 @@ COPY package*.json ./
 
 # Install all dependencies (including dev dependencies)
 # This layer will only rebuild when package.json changes
-RUN npm install
+RUN npm ci
+
+# Copy source files
+COPY docusaurus.config.js ./
+COPY sidebars.js ./
+COPY src ./src
+COPY static ./static
 
 # Expose port
 EXPOSE 3005
