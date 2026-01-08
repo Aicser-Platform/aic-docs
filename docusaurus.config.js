@@ -3,17 +3,16 @@ const config = {
   tagline: 'AI-Powered Analytics Platform',
   favicon: '/favicon.ico',
   
-  // Production URL - custom domain
-  url: 'https://docs.aicser.com',
-  // Base URL - use '/' for custom domain (root deployment)
-  baseUrl: '/',
-  
   // GitHub Pages deployment configuration
+  url: 'https://aicser-platform.github.io',
+  baseUrl: '/aic-docs/',
+  
+  // GitHub Pages deployment branch
   deploymentBranch: 'gh-pages',
   
   // GitHub organization and repository (for edit links)
-  organizationName: 'aiser-platform',
-  projectName: 'aiser-world',
+  organizationName: 'Aicser-Platform',
+  projectName: 'aic-docs',
   
   // Trailing slash configuration - important for GitHub Pages
   trailingSlash: false,
