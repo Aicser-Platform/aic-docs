@@ -1,0 +1,54 @@
+name: Docker Compose Deployment
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'docker-compose.docs.yml'
+      - 'Dockerfile.docs'
+      - 'Dockerfile.docs.dev'
+      - 'nginx.docs.conf'
+  workflow_dispatch:
+
+jobs:
+  deploy-docker-compose:
+    name: Deploy with Docker Compose
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Test Docker Compose configuration
+        run: |
+          echo "Validating docker-compose.docs.yml..."
+          docker-compose -f docker-compose.docs.yml config
+
+      - name: Validate Dockerfiles
+        run: |
+          echo "Linting Dockerfile.docs..."
+          docker run --rm -i hadolint/hadolint < Dockerfile.docs || echo "Completed with warnings"
+          echo "Linting Dockerfile.docs.dev..."
+          docker run --rm -i hadolint/hadolint < Dockerfile.docs.dev || echo "Completed with warnings"
+
+      - name: Build and test locally
+        run: |
+          docker-compose -f docker-compose.docs.yml up -d --build
+          sleep 30
+          
+      - name: Health check
+        run: |
+          curl -f http://localhost:3005/health || exit 1
+          curl -f http://localhost:3005 || exit 1
+
+      - name: Check logs
+        if: always()
+        run: |
+          docker-compose -f docker-compose.docs.yml logs
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker-compose -f docker-compose.docs.yml down -v

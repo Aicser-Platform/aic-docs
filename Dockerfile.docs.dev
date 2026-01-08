@@ -1,5 +1,5 @@
 # Aicser Platform Documentation - Development Dockerfile
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
@@ -7,24 +7,20 @@ WORKDIR /app
 # Install system dependencies
 RUN apk add --no-cache curl git
 
-# Copy package files
+# Copy package files first (for better layer caching)
 COPY package*.json ./
 
 # Install all dependencies (including dev dependencies)
-RUN npm ci
-
-# Copy source code
-COPY . .
-
-# Create health check endpoint
-RUN echo '{"status":"healthy","service":"aicser-docs-dev"}' > /public/health
+# This layer will only rebuild when package.json changes
+RUN npm install
 
 # Expose port
 EXPOSE 3005
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:3005/health || exit 1
+    CMD curl -f http://localhost:3005/ || exit 1
 
-# Start development server
-CMD ["npm", "start"]
+# Start development server with hot reload
+# The actual source files will be mounted via volumes
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--poll", "1000"]

@@ -1,0 +1,33 @@
+---
+id: chartgenerationrequest
+title: "ChartGenerationRequest"
+description: ""
+sidebar_label: "ChartGenerationRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"query":"Show me sales trends by month","data":{},"chart_type":"bar"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ChartGenerationRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","required":["query","data"],"properties":{"query":{"type":"string","description":"Natural language query describing the desired chart","example":"Show me sales trends by month"},"data":{"type":"object","description":"Data to visualize"},"chart_type":{"type":"string","enum":["bar","line","pie","scatter","heatmap"],"description":"Preferred chart type (optional)"}},"title":"ChartGenerationRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

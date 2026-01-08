@@ -18,6 +18,7 @@ services:
       - ./static:/app/static:ro
       - ./docusaurus.config.js:/app/docusaurus.config.js:ro
       - ./sidebars.js:/app/sidebars.js:ro
+      - ./sidebars-reference.js:/app/sidebars-reference.js:ro
       - ./package.json:/app/package.json:ro
     networks:
       - aicser-docs
@@ -47,6 +48,7 @@ services:
       - ./static:/app/static
       - ./docusaurus.config.js:/app/docusaurus.config.js
       - ./sidebars.js:/app/sidebars.js
+      - ./sidebars-reference.js:/app/sidebars-reference.js
       - ./package.json:/app/package.json
       - ./node_modules:/app/node_modules
     networks:

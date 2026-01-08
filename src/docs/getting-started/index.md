@@ -20,17 +20,17 @@ cd aicser-world
 docker-compose up -d
 ```
 
-[**Start with Docker →**](./quick-start-docker)
+[**Start with Docker →**](./getting-started/quick-start-docker)
 
 ### **📊 First Chart Creation**
 Learn how to create your first AI-powered chart:
 
-[**Create Your First Chart →**](./first-chart)
+[**Create Your First Chart →**](./getting-started/first-chart)
 
 ### **🎮 Interactive Demo**
 Take a guided tour of the platform:
 
-[**Demo Walkthrough →**](./demo-walkthrough)
+[**Demo Walkthrough →**](./getting-started/demo-walkthrough)
 
 ## 🔧 System Requirements
 

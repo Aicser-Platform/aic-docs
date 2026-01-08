@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  docs-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.docs.dev
+    container_name: aicser-docs-dev
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=development
+      - PORT=3005
+      - BASE_URL=/
+      - DEBUG=true
+      - WATCH=true
+      - FAST_REFRESH=true
+    volumes:
+      # Mount source files for hot reload
+      - ./src:/app/src
+      - ./static:/app/static
+      - ./docs:/app/docs
+      - ./docusaurus.config.js:/app/docusaurus.config.js
+      - ./sidebars.js:/app/sidebars.js
+      - ./sidebars-reference.js:/app/sidebars-reference.js
+      - ./package.json:/app/package.json
+      - ./tsconfig.json:/app/tsconfig.json
+      # Use named volume for node_modules to persist dependencies
+      # This prevents reinstalling on every restart
+      - node_modules:/app/node_modules
+      # Exclude build cache for better performance
+      - /app/.docusaurus
+      - /app/build
+    networks:
+      - aicser-docs-dev
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    command: npm start -- --host 0.0.0.0 --poll 1000
+
+networks:
+  aicser-docs-dev:
+    driver: bridge
+
+volumes:
+  node_modules:
+    driver: local
