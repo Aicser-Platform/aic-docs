@@ -1,0 +1,55 @@
+name: CI - Build and Test
+
+on:
+  push:
+    branches: [main, add-ci, updateDoc-integrate-api]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build and Test Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: |
+          echo "Running linting checks..."
+          # Add your lint commands here if needed
+
+      - name: Generate API Documentation
+        run: |
+          echo "Generating API docs from OpenAPI spec..."
+          npm run gen-api-docs
+
+      - name: Build documentation
+        run: |
+          echo "Building documentation..."
+          npm run build
+
+      - name: Check build output
+        run: |
+          echo "Verifying build output..."
+          ls -la build/
+          test -f build/index.html || (echo "index.html not found!" && exit 1)
+          echo "✅ Build successful!"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-build
+          path: ./build
+          retention-days: 7

@@ -24,7 +24,7 @@ jobs:
       - name: Test Docker Compose configuration
         run: |
           echo "Validating docker-compose.docs.yml..."
-          docker-compose -f docker-compose.docs.yml config
+          docker compose -f docker-compose.docs.yml config
 
       - name: Validate Dockerfiles
         run: |
