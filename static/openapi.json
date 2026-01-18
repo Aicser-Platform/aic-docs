@@ -3,31 +3,57 @@
   "info": {
     "title": "Aicser Platform API",
     "version": "1.0.0",
-    "description": "AI-Powered Analytics Platform - RESTful API for data analysis, chart generation, and AI-driven insights",
+    "description": "AI-Powered Analytics Platform API for customer service and business intelligence",
     "contact": {
-      "name": "Aicser Platform",
+      "name": "Aicser Support",
       "url": "https://aicser.com",
       "email": "support@aicser.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
     }
   },
   "servers": [
     {
-      "url": "http://localhost:8000",
-      "description": "Development server"
+      "url": "https://api.aicser.com/v1",
+      "description": "Production server"
     },
     {
-      "url": "https://app.aicser.com",
-      "description": "Production server"
+      "url": "http://localhost:8000",
+      "description": "Development server"
+    }
+  ],
+  "x-tagGroup": [
+    {
+      "name": "Authentication",
+      "tags": ["Authentication"]
+    },
+    {
+      "name": "User Management", 
+      "tags": ["Users"]
+    },
+    {
+      "name": "Analytics",
+      "tags": ["Analytics"]
+    },
+    {
+      "name": "AI Analysis",
+      "tags": ["AI Analysis"]
     }
   ],
   "tags": [
     {
       "name": "Authentication",
-      "description": "User authentication and authorization operations"
+      "description": "User authentication and authorization operations - login, refresh token, and logout"
+    },
+    {
+      "name": "Users",
+      "description": "User management operations (CRUD)"
     },
     {
       "name": "Analytics",
-      "description": "Chart generation and analytics operations"
+      "description": "Data analytics and visualization endpoints"
     },
     {
       "name": "AI Analysis",
@@ -35,11 +61,11 @@
     }
   ],
   "paths": {
-    "/api/v1/auth/login": {
+    "/auth/login": {
       "post": {
         "tags": ["Authentication"],
-        "summary": "User Login",
-        "description": "Authenticate user credentials and receive access tokens",
+        "summary": "User login",
+        "description": "Authenticate user and obtain access and refresh tokens",
         "operationId": "login",
         "requestBody": {
           "required": true,
@@ -48,20 +74,42 @@
               "schema": {
                 "$ref": "#/components/schemas/LoginRequest"
               },
-              "example": {
-                "email": "user@example.com",
-                "password": "your-password"
+              "examples": {
+                "emailLogin": {
+                  "summary": "Login with email",
+                  "value": {
+                    "email": "user@example.com",
+                    "password": "SecurePassword123!"
+                  }
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful login",
+            "description": "Login successful",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TokenResponse"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful login",
+                    "value": {
+                      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                      "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                      "token_type": "bearer",
+                      "expires_in": 3600,
+                      "user": {
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "email": "user@example.com",
+                        "name": "John Doe",
+                        "role": "admin"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -75,15 +123,355 @@
                 }
               }
             }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/v1/charts/generate": {
+    "/auth/refresh": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Refresh access token",
+        "description": "Obtain a new access token using a valid refresh token",
+        "operationId": "refreshToken",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token refreshed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or expired refresh token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "User logout",
+        "description": "Invalidate the current access and refresh tokens",
+        "operationId": "logout",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logout successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully logged out"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "List all users",
+        "description": "Retrieve a paginated list of all users",
+        "operationId": "listUsers",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search by name or email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "Filter by user role",
+            "schema": {
+              "type": "string",
+              "enum": ["admin", "user", "viewer"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create a new user",
+        "description": "Create a new user account",
+        "operationId": "createUser",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get user by ID",
+        "description": "Retrieve detailed information about a specific user",
+        "operationId": "getUserById",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/UserIdPath"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update user",
+        "description": "Update user information",
+        "operationId": "updateUser",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/UserIdPath"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete user",
+        "description": "Delete a user account",
+        "operationId": "deleteUser",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/UserIdPath"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      }
+    },
+    "/analytics/generate-chart": {
       "post": {
         "tags": ["Analytics"],
-        "summary": "Generate Chart",
-        "description": "Generate a chart from natural language query and data",
+        "summary": "Generate analytics chart",
+        "description": "Generate a chart visualization from analytics data",
         "operationId": "generateChart",
         "security": [
           {
@@ -112,16 +500,82 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/UnauthorizedError"
           }
         }
       }
     },
-    "/api/v1/ai/analyze": {
+     "/charts/": {
+      "get": {
+        "tags": [
+          "charts"
+        ],
+        "summary": "Get All",
+        "operationId": "get_all_charts__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {  
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "charts"
+        ],
+        "summary": "Create",
+        "operationId": "create_charts__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChartConfiguration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/analyze": {
       "post": {
         "tags": ["AI Analysis"],
-        "summary": "AI Data Analysis",
-        "description": "Perform AI-powered analysis on your data and get intelligent insights",
+        "summary": "AI data analysis",
+        "description": "Perform AI-powered analysis on provided data",
         "operationId": "aiAnalyze",
         "security": [
           {
@@ -148,6 +602,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
           }
         }
       }
@@ -159,7 +616,74 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT",
-        "description": "JWT token obtained from /api/v1/auth/login"
+        "description": "JWT access token obtained from login endpoint"
+      }
+    },
+    "parameters": {
+      "UserIdPath": {
+        "name": "user_id",
+        "in": "path",
+        "required": true,
+        "description": "User ID (UUID)",
+        "schema": {
+          "type": "string",
+          "format": "uuid",
+          "example": "550e8400-e29b-41d4-a716-446655440000"
+        }
+      }
+    },
+    "responses": {
+      "UnauthorizedError": {
+        "description": "Authentication required or token invalid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "error": "Unauthorized",
+              "message": "Invalid or expired token"
+            }
+          }
+        }
+      },
+      "ForbiddenError": {
+        "description": "Insufficient permissions",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "error": "Forbidden",
+              "message": "You don't have permission to perform this action"
+            }
+          }
+        }
+      },
+      "NotFoundError": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "error": "Not Found",
+              "message": "User not found"
+            }
+          }
+        }
+      },
+      "BadRequestError": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
       }
     },
     "schemas": {
@@ -170,12 +694,26 @@
           "email": {
             "type": "string",
             "format": "email",
-            "description": "User email address"
+            "description": "User email address",
+            "example": "user@example.com"
           },
           "password": {
             "type": "string",
             "format": "password",
-            "description": "User password"
+            "minLength": 8,
+            "description": "User password",
+            "example": "SecurePassword123!"
+          }
+        }
+      },
+      "RefreshTokenRequest": {
+        "type": "object",
+        "required": ["refresh_token"],
+        "properties": {
+          "refresh_token": {
+            "type": "string",
+            "description": "Valid refresh token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
           }
         }
       },
@@ -184,39 +722,174 @@
         "properties": {
           "access_token": {
             "type": "string",
-            "description": "JWT access token"
+            "description": "JWT access token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
           },
           "refresh_token": {
             "type": "string",
-            "description": "JWT refresh token"
+            "description": "JWT refresh token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
           },
           "token_type": {
             "type": "string",
-            "default": "bearer"
+            "description": "Token type",
+            "example": "bearer"
           },
           "expires_in": {
             "type": "integer",
-            "description": "Token expiration time in seconds"
+            "description": "Token expiration time in seconds",
+            "example": 3600
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "User unique identifier",
+            "example": "550e8400-e29b-41d4-a716-446655440000"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User email address",
+            "example": "user@example.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "User full name",
+            "example": "John Doe"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["admin", "user", "viewer"],
+            "description": "User role",
+            "example": "admin"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Account creation timestamp",
+            "example": "2024-01-15T10:30:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp",
+            "example": "2024-01-15T10:30:00Z"
+          },
+          "is_active": {
+            "type": "boolean",
+            "description": "Account active status",
+            "example": true
+          }
+        }
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "required": ["email", "name", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User email address",
+            "example": "newuser@example.com"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "User full name",
+            "example": "Jane Smith"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "minLength": 8,
+            "description": "User password (min 8 characters)",
+            "example": "SecurePassword123!"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["admin", "user", "viewer"],
+            "default": "user",
+            "description": "User role",
+            "example": "user"
+          }
+        }
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "User full name",
+            "example": "Jane Smith Updated"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User email address",
+            "example": "updated@example.com"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["admin", "user", "viewer"],
+            "description": "User role",
+            "example": "admin"
+          },
+          "is_active": {
+            "type": "boolean",
+            "description": "Account active status",
+            "example": true
+          }
+        }
+      },
+      "UserListResponse": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of users",
+            "example": 50
+          },
+          "page": {
+            "type": "integer",
+            "description": "Current page number",
+            "example": 1
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Items per page",
+            "example": 20
           }
         }
       },
       "ChartGenerationRequest": {
         "type": "object",
-        "required": ["query", "data"],
+        "required": ["chart_type", "data"],
         "properties": {
-          "query": {
+          "chart_type": {
             "type": "string",
-            "description": "Natural language query describing the desired chart",
-            "example": "Show me sales trends by month"
+            "enum": ["bar", "line", "pie", "scatter"],
+            "description": "Type of chart to generate"
           },
           "data": {
             "type": "object",
             "description": "Data to visualize"
-          },
-          "chart_type": {
-            "type": "string",
-            "enum": ["bar", "line", "pie", "scatter", "heatmap"],
-            "description": "Preferred chart type (optional)"
           }
         }
       },
@@ -225,19 +898,14 @@
         "properties": {
           "chart_id": {
             "type": "string",
-            "format": "uuid",
-            "description": "Unique chart identifier"
+            "format": "uuid"
           },
-          "chart_config": {
-            "type": "object",
-            "description": "ECharts configuration object"
+          "chart_url": {
+            "type": "string",
+            "format": "uri"
           },
-          "insights": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "AI-generated insights about the data"
+          "chart_data": {
+            "type": "object"
           }
         }
       },
@@ -251,12 +919,8 @@
           },
           "analysis_type": {
             "type": "string",
-            "enum": ["trend", "anomaly", "forecast", "correlation"],
-            "description": "Type of analysis to perform"
-          },
-          "parameters": {
-            "type": "object",
-            "description": "Additional analysis parameters"
+            "enum": ["sentiment", "classification", "prediction"],
+            "description": "Type of analysis"
           }
         }
       },
@@ -268,21 +932,18 @@
             "format": "uuid"
           },
           "results": {
-            "type": "object",
-            "description": "Analysis results"
+            "type": "object"
           },
           "insights": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": "AI-generated insights"
+            }
           },
           "confidence": {
             "type": "number",
             "minimum": 0,
-            "maximum": 1,
-            "description": "Confidence score of the analysis"
+            "maximum": 1
           }
         }
       },
@@ -291,22 +952,37 @@
         "properties": {
           "error": {
             "type": "string",
-            "description": "Error message"
+            "description": "Error type",
+            "example": "Unauthorized"
           },
-          "detail": {
+          "message": {
             "type": "string",
-            "description": "Detailed error information"
+            "description": "Error message",
+            "example": "Invalid credentials"
           }
         }
-      }
-    },
-    "responses": {
-      "Unauthorized": {
-        "description": "Authentication required or token invalid",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Validation Error"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Invalid email format"
+                }
+              }
             }
           }
         }

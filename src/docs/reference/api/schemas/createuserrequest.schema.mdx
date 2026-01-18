@@ -1,0 +1,33 @@
+---
+id: createuserrequest
+title: "CreateUserRequest"
+description: ""
+sidebar_label: "CreateUserRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"email":"newuser@example.com","name":"Jane Smith","password":"SecurePassword123!","role":"user"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CreateUserRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","required":["email","name","password"],"properties":{"email":{"type":"string","format":"email","description":"User email address","example":"newuser@example.com"},"name":{"type":"string","minLength":1,"maxLength":100,"description":"User full name","example":"Jane Smith"},"password":{"type":"string","format":"password","minLength":8,"description":"User password (min 8 characters)","example":"SecurePassword123!"},"role":{"type":"string","enum":["admin","user","viewer"],"default":"user","description":"User role","example":"user"}},"title":"CreateUserRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

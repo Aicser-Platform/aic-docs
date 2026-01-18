@@ -1,0 +1,71 @@
+---
+id: delete-user
+title: "Delete user"
+description: "Delete a user account"
+sidebar_label: "Delete user"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVttuGzcQ/RViXpoAa6+Uym66TxVgG1DQFkYiIygEoaC4I4kJl2R4Ua0s+O/FcFfyylKBfkCe9sLhzOE5nEsLgW88VAt48ug8LAuo0QsnbZBGQwV3qDAg4yx6dIwLYaIOUICx6DjZzGqooM5W5AIK8Ciik2EP1aKFFXKHbhrDFqrFMi0LsNzxBgNFIwPNG4QKyP3fsoYCJIW1PGyhAIffonRYQxVcxNfYKB6b3bE3T0+zu7cUWWyx4VC1EPaWvPrgpN5AAWvjGh4oTsxB8Jk3VpHJzc0I309Goyt89+vqajKuJ1f8l/Ht1WRye3tzM5mMRqMRJALu0FujPXoK8G40occFQB0XNfNRCPR+HZXaQypgMhqf7yBiUAcpMpfscF5mHAvmK2om9Y6rDFkYHVAH8sGtVf2W8osnR+352c3qCwqSyjoSK8gOODpn3CWKToHdkxnLNkO2njSPYWuc/I41HapB7/kG/6+/g/nQ5aw7IRMOa6KCKw8pFRBkyOt5J8U6bjke4hTOAM3RqXEMn22mNPMJKaWsxc/nWsy0j+u1FBJ1YBZdI72XRvsf3F/k/sG4laxr1CfE/2Uiq43+KbAt3+GARhYMfVEisrCVnnGR4R0EuZBOH9Gb6AQybQJbm6h/pMFlKf40gT30/LxIkavRC3WpY7rBsDUvNZuIoVpbQUkl2JdtX4lTruRud6jT0SmoYBuC9VVZciuvuRQe3bUwTbkbn5300Zk6ZolZ5wZSMfRSlaUygqut8aF6T0X2vPXsUBnbUDoeXCxf2ssnUroTc9hkjgpQkENPoO/OCIr+5eHQET58np+F/vB5Tr0Ove/LsFkFLjXWbO1Mw5TZSM1Q19ZIHbJMUq9NDt7LNc3ksEfFQ77y08cZFEBsdhHG16Pr8yNPZ1eP5h+kcjXVXO2DFP7EB1sbx0T0wTToMitSIOO6ZqvopSbAUgdUSm5QC+zzhYucL32r7aF9itYaR5nxStqjrHQ/Gy5p0XfGvw0WUwFKCtQeB77/mM3PHBqLukvka+M2Zb/Jl2RL1FnjQ8P1wEs/dMRunjihqH0pAP85m/QXIOBzKK3iUhPWjKntL/sizxtU2avD4LEsgK4irbXtint8ciol+v0toqNhZlnAjjvJVyTwooVaenqvoVpz5V9PJ0Ogbz72ff0tO5tZLoLtf3K9p0vDVaQvKOAr7gezUlqmArbIa3QZULc6FQJtGOw7K5OURccycHf/+/38Hgrgp+nzKl1ygIuw2razmFOipHRE2ffbZUrpXyJik3k=
+sidebar_class_name: "delete api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete user"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/users/{user_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete a user account
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"user_id","in":"path","required":true,"description":"User ID (UUID)","schema":{"type":"string","format":"uuid","example":"550e8400-e29b-41d4-a716-446655440000"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"User deleted successfully"},"401":{"description":"Authentication required or token invalid","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"},"example":{"error":"Unauthorized","message":"Invalid or expired token"}}}},"403":{"description":"Insufficient permissions","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"},"example":{"error":"Forbidden","message":"You don't have permission to perform this action"}}}},"404":{"description":"Resource not found","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"},"example":{"error":"Not Found","message":"User not found"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,33 @@
+---
+id: updateuserrequest
+title: "UpdateUserRequest"
+description: ""
+sidebar_label: "UpdateUserRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"name":"Jane Smith Updated","email":"updated@example.com","role":"admin","is_active":true}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"UpdateUserRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"name":{"type":"string","minLength":1,"maxLength":100,"description":"User full name","example":"Jane Smith Updated"},"email":{"type":"string","format":"email","description":"User email address","example":"updated@example.com"},"role":{"type":"string","enum":["admin","user","viewer"],"description":"User role","example":"admin"},"is_active":{"type":"boolean","description":"Account active status","example":true}},"title":"UpdateUserRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            
