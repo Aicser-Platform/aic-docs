@@ -1,0 +1,71 @@
+---
+id: refresh-token
+title: "Refresh access token"
+description: "Obtain a new access token using a valid refresh token"
+sidebar_label: "Refresh access token"
+hide_title: true
+hide_table_of_contents: true
+api: eJytV21zGjkM/isefV5gSSHX7qdyae+GzN01k5D25hgmY7wC3OzaG7+QUIb/fiN7CUtI89I2XxKw9Uh6JD1W1uD43EI2hoF3C1ROCu6kVjBJIEcrjKzCxww+TR2XinGm8JZxIdBa5vQ1KuatVHPG2ZIXMmcGZwbtIp5BArpCEyCHOWRQn47qQ4M3Hq37XecryNbhozSYQ+aMxwSEVg6VoyNeVUUdW+erpYjWYMUCS05/uVWFkIGefkXhatwINN66vIoBTRKoDMXkJNros3m8w7LOSDWHhzR8fjRJvONlVZAZrk4X0z+F/CRPh5ffht1/5NAO1XlfnAyPh9fVv59PTt+1223YbBJw0gWb8wYp55ER2GzohkFbaWVjpEdpSr/24wlG23gwZ9aH0sx8UazgJxjcJynW+6UcnX4Z7XXIjxGUvLY05PYXFCaBYHwVnT3nNPIf7jS9TZEbNASGd5U0aK9kMwOpHM7RfActmIRCMSdLZFIxi0Kr3DZ9vDlO000C3qJ5voAyfyyVmTYld5CB9zI/CObSomFeyRuPTOakDTMZYt6l2e+n+LaXpi08ejdt9bp5r8V/6x63er3j436/10vTNA0klFwWT0YQbzwaQjhiPM8N2j0GQu7v649toUtypXj5grIFYBoSFu43QU/1QrEPGkMH6uJRMFS+JG3heSmpzUIRElhKvEVzqJ3BW8BqOorGmwSEQe4wv+LuSYpy7rBFDXGQzUAI7ZVjAWjbNtbxstpzeJQe9Vppt9Xtj7pp9ibN0vQ/8u+r/Of8/8WtYxHlla6lveLCyWWT5anWBXL13SyjAbOOO7/XD/RoNHWVaN8T2lpho6bWEttLu4eqOlTxMdMmDiMeSv4vUlY0Rpvn+/UjXTuUmUvFvVtoI79hTnSWaC2fv6D/I972ehNym7owGGaeF3aPw2AZuAv+3ELTu15pG3LjbgEZdCiqTs0YJGDRLNHQmrEGbwrIYOFcZbNOh1eyzaWwaGh+O8vuQaRnRudehK6OMLBJmihZp1NowYuFti57S3rzEOEDLrHQVYnK3UNMKCjhjXSrC6pULEZUbdqEGgySE8ohXNtJe1L/8cd2PE6/jJ59CZkOWxTmbGZ0yQo9l4qhyistlQs0U/+c77aij9u6HCwqr3nQpJrpkFFdw0FgnJ0V3NF0s8HZkNQLjY1hd9tp+5DHwbB1pm+RhmGgeLFyUtg9DDbThglvnS7RBKqlQMZVzqa0IxIL9PAVhZyjElgPERdhiKJub0O78FWlDbXUg3657xW4f1XAxsvvG4ebBAopkMZ8h/33cHQAqCtUVnsjsK3NvFMb2Q7dpXpQY5dcNVDqbe3hhrPH1XonDz+8ONft5/DOdaqCx6ciBL+u52wMNGdwvyjRw0NjQCfr9ZRbvDTFZkNf33g0K8jGkwSW3Eg+pT4YTzYJLJDntEGM13CNK8jgJEbeGkWxWfLCh9fqocjRGEaLgRBYuSfvThpacfbpguowrZf+UudkY/gtZcJvIYPwbwNZxw2dvltDwdXcB3GDiEk//wOmD17C
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Refresh access token"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/refresh"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Obtain a new access token using a valid refresh token
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["refresh_token"],"properties":{"refresh_token":{"type":"string","description":"Valid refresh token","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}},"title":"RefreshTokenRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Token refreshed successfully","content":{"application/json":{"schema":{"type":"object","properties":{"access_token":{"type":"string","description":"JWT access token","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."},"refresh_token":{"type":"string","description":"JWT refresh token","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."},"token_type":{"type":"string","description":"Token type","example":"bearer"},"expires_in":{"type":"integer","description":"Token expiration time in seconds","example":3600},"user":{"type":"object","properties":{"id":{"type":"string","format":"uuid","description":"User unique identifier","example":"550e8400-e29b-41d4-a716-446655440000"},"email":{"type":"string","format":"email","description":"User email address","example":"user@example.com"},"name":{"type":"string","description":"User full name","example":"John Doe"},"role":{"type":"string","enum":["admin","user","viewer"],"description":"User role","example":"admin"},"created_at":{"type":"string","format":"date-time","description":"Account creation timestamp","example":"2024-01-15T10:30:00Z"},"updated_at":{"type":"string","format":"date-time","description":"Last update timestamp","example":"2024-01-15T10:30:00Z"},"is_active":{"type":"boolean","description":"Account active status","example":true}},"title":"User"}},"title":"TokenResponse"}}}},"401":{"description":"Invalid or expired refresh token","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

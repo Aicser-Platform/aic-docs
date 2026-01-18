@@ -1,0 +1,71 @@
+---
+id: list-users
+title: "List all users"
+description: "Retrieve a paginated list of all users"
+sidebar_label: "List all users"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV02P2zYQ/SsEL73Ia3njTVOdYjRJ4SAtFskugnZhBGNpbE9CkQo/nHUN/fdiKNmW1o43SXvsyZY0895wZvg43EoPSyezO3nr0Do5S2SBLrdUeTJaZvIteku4RgGigiVp8FgIRc4LsxCglAjRL5GmQgvsNC1kJtnitv3iMA+W/EZmd1s5R7BoJ8GvZHY3q2eJrMBCiZ5t2UBDiTKTFSxRJpI4hs8B7UY+jOwalih0KOdomSRfYQky20q/qRiAtMdl/FSSpjKUMhsxxAKC8jIb1XWyJ1NUkj/P9kck4kWTx9KJCq1oY/xG6hLu2/9p2gnkMu1G4hBsvjofyrtoI+YbwU7CWIElkDoVifOW9FJ2GaxRjyT2FSmPlvG5tqJ1+Bp2IlHzqu4kFCVpmUj2kolcE35BK2c1F9miq4x26BjgMk35p88au0XYtt0K4UKeo3OLoBSHmBvtUXv2g6pSlMdeG3507Lw9js7MP2LONa0sd6anhrrp1oMZWAsMH4v6uDsVpxKwMLYELzMZAhVH6eSFiaDpc0BBBWpPC4oJwnsoK8VIV1cpPhun6QAvf5kPxqNiPICfR08H4/HTp1dX43GapqmsE9nU+VwEu044EUL8JKAoLDrXo+ekPG8fL3JTMlXTLcdMJ4C5RLEVe6CvzUqLFwYZLLbQ93fOSba2HQ9EjXOdyNwiq9MH8GdTVIDHgacYbh9/kucmaC8iEBkt2Mp5KKse4WV6OR6ko8Ho6maUZk/SLE3/Yv5QFf+O/w04LxqU76Qm9wFyT+tulufGKAT91VU2DsJ58KHXD94GrOtEevKRlNMu4wvjQZ3UuT7DDdu10syKuTsi9gxXaZ00Cv842K/BWtQ+iu1B7vdQozpp5ftxqOlD5d6jRBHuLfgNOf+2FS1Z1/x5nI6OZYtPMt7TjR4Ji58DWSxYlb35hFqQXoOKsvAfSRhaa+zjW/Mlm4lo0+2gWw3Br4ylv7HgzinRuX4hzuLtzLuQ02aFvG2ivIFyspvO6Bnla+eyX0Q/nE40e1A+3e6rmNKYz30tnhzXYqpdWCwop9gvaEtyjox2/+f+ZO5fGTunokDdS/yfJojC6J+8WMEaO2kU3vAT65jwK3JRQExTkLgYvzI8+i0x5g14wpPDsB8C7Xo34gWrZCZX3lcuGw6hogug3KHls2e4Hh1PetYUIZKJBkbyPHNAyYZDZXJQK+N89ozPyocIL3CNylQlN8YOYnaYTN9x+ZsKd+fTfVmYZDcCRWmNRjJp/7zaSfvr9zdH1K/f3wiIo0wrCGbugTQWYmFNKZRZkhaoi8qQ9rF2pBcmkrc1nMTkiGsFPiZ/cj3lQxKtaxhGF+nF8ZIn08G1+YK8cSYa1MZT7noYYmGsyIPzpkQbs0I5CtCFmAdHmgNmIVWKlqhzbDcR5HETtcNkG9q7UFXGctkflHZfVrkfXqRrjJ93PkYNz5Gl9oD9+/TmCNBUqJ0JNscLY5fD1skN2ZZTVxnnS9AdFNbx3j2ll6XtQRi+/abTNoXHez+sFDTDR4xz27b9XTtnzhLJPckvtts5OLy1qq75dTN582YoyMFcYSGzBSiHZwLsX3hORvEJN4e70xpUYJO4W76d5sxN5wzn7gr1g6Rfv9Oc4dxfln6Q9PRF5wxha3Ggm/GDJeaL19lErhAKtLGyjc8kz7HqZubo/GGUvXr+9pK7Hvr680BvIvruAqM3HezttrG4YaWpa7kLvD06Z3Vd/wM+YXJ9
+sidebar_class_name: "get api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List all users"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/users"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve a paginated list of all users
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"page","in":"query","description":"Page number","schema":{"type":"integer","minimum":1,"default":1}},{"name":"limit","in":"query","description":"Number of items per page","schema":{"type":"integer","minimum":1,"maximum":100,"default":20}},{"name":"search","in":"query","description":"Search by name or email","schema":{"type":"string"}},{"name":"role","in":"query","description":"Filter by user role","schema":{"type":"string","enum":["admin","user","viewer"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Users retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"users":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","format":"uuid","description":"User unique identifier","example":"550e8400-e29b-41d4-a716-446655440000"},"email":{"type":"string","format":"email","description":"User email address","example":"user@example.com"},"name":{"type":"string","description":"User full name","example":"John Doe"},"role":{"type":"string","enum":["admin","user","viewer"],"description":"User role","example":"admin"},"created_at":{"type":"string","format":"date-time","description":"Account creation timestamp","example":"2024-01-15T10:30:00Z"},"updated_at":{"type":"string","format":"date-time","description":"Last update timestamp","example":"2024-01-15T10:30:00Z"},"is_active":{"type":"boolean","description":"Account active status","example":true}},"title":"User"}},"total":{"type":"integer","description":"Total number of users","example":50},"page":{"type":"integer","description":"Current page number","example":1},"limit":{"type":"integer","description":"Items per page","example":20}},"title":"UserListResponse"}}}},"401":{"description":"Authentication required or token invalid","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"},"example":{"error":"Unauthorized","message":"Invalid or expired token"}}}},"403":{"description":"Insufficient permissions","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"},"example":{"error":"Forbidden","message":"You don't have permission to perform this action"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

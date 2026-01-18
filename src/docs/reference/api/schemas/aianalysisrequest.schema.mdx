@@ -6,7 +6,7 @@ sidebar_label: "AIAnalysisRequest"
 hide_title: true
 hide_table_of_contents: true
 schema: true
-sample: {"data":{},"analysis_type":"trend","parameters":{}}
+sample: {"data":{},"analysis_type":"sentiment"}
 custom_edit_url: null
 ---
 
@@ -25,7 +25,7 @@ import Heading from "@theme/Heading";
 
 
 <Schema
-  schema={{"type":"object","required":["data","analysis_type"],"properties":{"data":{"type":"object","description":"Data to analyze"},"analysis_type":{"type":"string","enum":["trend","anomaly","forecast","correlation"],"description":"Type of analysis to perform"},"parameters":{"type":"object","description":"Additional analysis parameters"}},"title":"AIAnalysisRequest"}}
+  schema={{"type":"object","required":["data","analysis_type"],"properties":{"data":{"type":"object","description":"Data to analyze"},"analysis_type":{"type":"string","enum":["sentiment","classification","prediction"],"description":"Type of analysis"}},"title":"AIAnalysisRequest"}}
   schemaType={"response"}
 >
   

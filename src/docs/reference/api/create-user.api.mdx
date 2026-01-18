@@ -1,0 +1,71 @@
+---
+id: create-user
+title: "Create a new user"
+description: "Create a new user account"
+sidebar_label: "Create a new user"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWNtu20YQ/ZXtvLQFKIty5NTlU5Qb4CBBjdhu0BpCMCJH0ibkLrMXyarAfy9ml5IoS3USpHnLkyRydi5nzszOaA0OZxayW7ixZCyMEyjI5kbWTmoFGTwzhI4ECkVL4S0ZgXmuvXKQgK7JIMtdFJBBHiRZDSRgKfdGuhVkt2uYEBoyI+/mkN2Om3EChj55su6pLlaQrcNPaaiAzBlPCeRaOVKOX2FdlzIPVvofLLu0BpvPqUL+5lY1QQZ68oFy9min6BaoQllCAgorggRqtHapTcEh1oZdd5IsK4mCO23WGalmkMBUmwodZFtV+9BwqCK8ElgUhqyFBOgOq7pkNYqWjNeT9slJritoWneOGKukek1qxhgNEqjwbvsrTY9anvqyFG1wO6uvUJG4qqSbs7Ft0A9FtxXac+L8qNGNrPilkkqci3yOBnNHxv6658YV558uW+nB6aOf2B2jy6Oxk/IVpwyLSipIwEcSLSQtyUROTtGX7Gz76ohrQXnXhyDaNAk46cKDZ1uGvo38g6bh94ZsrZWNbDhNB/xxxEAkeCGsz3OylvFfwTeQdZ+F8uEkeS+L43F7JT95ErIg5eRUBnh2IJydpXQ+TNMenf4+6Q0HxbCHvw0e94bDx4/PzobDNE1TTs13KoKvqYAv57ieK/Fc0zdS6vMMioebpO1txXt0D0JUoKOek8Hdff2j2DQjh6RWgqWsw6reM3iang576aA3OLsepNmjNEvTv9m+r4tvs/8arRNRy1ealvY95k4uuihPtC4J1X9GGQ8I69D5PT5we+9W5E0sUX40TNPDunuKhWjviv+v0sgYbT5PwBcsJoJMF6cbhd7NtZH/UMH4VGQtzr6A0FHfRryr8kItsJQFkyMUMZZ2r2+Fk1uYjrQnvlr5YAREbG5Bwf7rj6SEjBZ+YNg5sg1i352ON1ul2gi6qwOkAc9tLh4d5uJCWT+dylyScqImU0lrpVb2B/ZHsX+pzUQWBak94P/SXhRa/ezEHBfUgVE4zb+44wk3lza0Gr1NyOnpYUL+ZN9iYUSj3z8RO2g6xrcoFORQlrZzEI1BHiWko8p+3u5UUnl0WtjZjZf1w+k9TGC8x9vrpImYbpK4i2TXjoJ+N9c8/tc69OgaeXiEvg/rBC8CZsHfeA/wpoQM5s7VNuv3sZYnKHNLhgeD/mJwwLhLowsf8iuiGmiSrpas3y91juVcW5ed8yBzX8NzWlCp64prcaNivNtOrjjREdPujrKFio1wDEGM770gBEn75eXm3n317vrA9Kt317wqkbVtD9YTh1JRIaZGV6LUM6kEqaLWUrlQLky/t7vF6EWnWOJwdnSl2MxT3cm/O/gfG8U3Y1M7Iicg1VSHuNtkj0JexGWJLpTa6PKChycyNgY3OElPDtEeXfQu9ZK4TY4Ulisnc7ung6klcm+drsiEhMicBKpCTLyVirGSylFZyhmpnNpKxTxUahtm69qVr2ttmHH3WLVlFGyHWrBR+EnnZZNAKXNSljq631xcHyjUNSmrvcnpRJtZvz1k+yzLWWPeV6g6Wg5W5vtArXcN6MH9umWhozvXr0uMo2jwbt3W2S34zdrORcAP1usJWroxZdPw40+eDG/h4wQWaCROOL+34yaBOWFBJhTmR1qxK9Gp3nW8MhZY+tCc7ndILsJ4YpTnVLsHZcedFnH5xxXjO2m3/koXfMbgkgmJS8gg/KngwnXJfwvwszWUqGY+3gtRJ8OO+5V6rzJDVJvmqlYdD9frKHHNNdk0kLShtPf6uGmafwElZd4S
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create a new user"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/users"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Create a new user account
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","name","password"],"properties":{"email":{"type":"string","format":"email","description":"User email address","example":"newuser@example.com"},"name":{"type":"string","minLength":1,"maxLength":100,"description":"User full name","example":"Jane Smith"},"password":{"type":"string","format":"password","minLength":8,"description":"User password (min 8 characters)","example":"SecurePassword123!"},"role":{"type":"string","enum":["admin","user","viewer"],"default":"user","description":"User role","example":"user"}},"title":"CreateUserRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"User created successfully","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","format":"uuid","description":"User unique identifier","example":"550e8400-e29b-41d4-a716-446655440000"},"email":{"type":"string","format":"email","description":"User email address","example":"user@example.com"},"name":{"type":"string","description":"User full name","example":"John Doe"},"role":{"type":"string","enum":["admin","user","viewer"],"description":"User role","example":"admin"},"created_at":{"type":"string","format":"date-time","description":"Account creation timestamp","example":"2024-01-15T10:30:00Z"},"updated_at":{"type":"string","format":"date-time","description":"Last update timestamp","example":"2024-01-15T10:30:00Z"},"is_active":{"type":"boolean","description":"Account active status","example":true}},"title":"User"}}}},"400":{"description":"Bad request","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"}}}},"401":{"description":"Authentication required or token invalid","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"},"example":{"error":"Unauthorized","message":"Invalid or expired token"}}}},"403":{"description":"Insufficient permissions","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"},"example":{"error":"Forbidden","message":"You don't have permission to perform this action"}}}},"422":{"description":"Validation error","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","example":"Validation Error"},"details":{"type":"array","items":{"type":"object","properties":{"field":{"type":"string","example":"email"},"message":{"type":"string","example":"Invalid email format"}}}}},"title":"ValidationError"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

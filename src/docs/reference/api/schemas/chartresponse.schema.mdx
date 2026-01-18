@@ -6,7 +6,7 @@ sidebar_label: "ChartResponse"
 hide_title: true
 hide_table_of_contents: true
 schema: true
-sample: {"chart_id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","chart_config":{},"insights":["string"]}
+sample: {"chart_id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","chart_url":"string","chart_data":{}}
 custom_edit_url: null
 ---
 
@@ -25,7 +25,7 @@ import Heading from "@theme/Heading";
 
 
 <Schema
-  schema={{"type":"object","properties":{"chart_id":{"type":"string","format":"uuid","description":"Unique chart identifier"},"chart_config":{"type":"object","description":"ECharts configuration object"},"insights":{"type":"array","items":{"type":"string"},"description":"AI-generated insights about the data"}},"title":"ChartResponse"}}
+  schema={{"type":"object","properties":{"chart_id":{"type":"string","format":"uuid"},"chart_url":{"type":"string","format":"uri"},"chart_data":{"type":"object"}},"title":"ChartResponse"}}
   schemaType={"response"}
 >
   

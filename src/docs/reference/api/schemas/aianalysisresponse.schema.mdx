@@ -25,7 +25,7 @@ import Heading from "@theme/Heading";
 
 
 <Schema
-  schema={{"type":"object","properties":{"analysis_id":{"type":"string","format":"uuid"},"results":{"type":"object","description":"Analysis results"},"insights":{"type":"array","items":{"type":"string"},"description":"AI-generated insights"},"confidence":{"type":"number","minimum":0,"maximum":1,"description":"Confidence score of the analysis"}},"title":"AIAnalysisResponse"}}
+  schema={{"type":"object","properties":{"analysis_id":{"type":"string","format":"uuid"},"results":{"type":"object"},"insights":{"type":"array","items":{"type":"string"}},"confidence":{"type":"number","minimum":0,"maximum":1}},"title":"AIAnalysisResponse"}}
   schemaType={"response"}
 >
   
