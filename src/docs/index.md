@@ -7,7 +7,7 @@ description: Complete documentation for Aicser Platform - AI-powered business in
 
 import Icon from '@site/src/components/Icon';
 
-# <Icon size={30} name="Rocket" /> Aicser Platform Documentation Makara
+# <Icon size={30} name="Rocket" /> Aicser Platform Documentation
 
 **Complete guide to the AI-first business intelligence platform that transforms how you interact with data.**
 
