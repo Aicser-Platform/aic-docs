@@ -17,13 +17,15 @@
     "fetch-openapi": "node scripts/fetch-openapi-spec.js",
     "gen-api-docs": "npx docusaurus gen-api-docs all",
     "gen-api-docs-local": "npm run fetch-openapi && npm run gen-api-docs",
-    "clean-api-docs": "npx docusaurus clean-api-docs all"
+    "clean-api-docs": "npx docusaurus clean-api-docs all",
+    "test": "npm run clear && npm run build",
+    "validate": "npm run test && echo Build validation successful!"
   },
   "dependencies": {
-    "@docusaurus/core": "3.8.1",
-    "@docusaurus/plugin-client-redirects": "^3.8.1",
-    "@docusaurus/plugin-sitemap": "3.8.1",
-    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/core": "3.9.2",
+    "@docusaurus/plugin-client-redirects": "3.9.2",
+    "@docusaurus/plugin-sitemap": "3.9.2",
+    "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "docusaurus-plugin-openapi-docs": "^4.6.0",
@@ -34,8 +36,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.8.1",
-    "@docusaurus/types": "3.8.1",
+    "@docusaurus/module-type-aliases": "3.9.2",
+    "@docusaurus/types": "3.9.2",
     "@types/react": "^18.2.0",
     "typescript": "^5.0.0"
   },

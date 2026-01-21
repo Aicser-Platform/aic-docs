@@ -44,8 +44,7 @@ const config = {
           showLastUpdateTime: true,
           // Serve docs from root of baseUrl to avoid double /docs/docs/ paths
           routeBasePath: '/',
-          // Enable OpenAPI doc items
-          docItemComponent: '@theme/ApiItem',
+          docItemComponent: '@theme/ApiItem', // Derived from docusaurus-theme-openapi-docs
         },
         blog: false,
         theme: {
@@ -74,7 +73,7 @@ const config = {
             outputDir: 'src/docs/reference/api',
             sidebarOptions: {
               groupPathsBy: 'tag',
-              categoryLinkSource: 'tag',
+              categoryLinkSource: 'info',
             },
             downloadUrl: '/openapi.json',
             hideSendButton: false,
@@ -117,12 +116,10 @@ const config = {
           label: 'Documentation',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'reference',
+          to: '/reference/api/aicser-platform-api',
           position: 'left',
           label: 'API Reference',
         },
-        // REMOVED: Reference sidebar that doesn't exist
         {
           href: 'https://aicser.com',
           label: 'Website',

@@ -3,15 +3,11 @@ import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 const sidebar: SidebarsConfig = {
   apisidebar: [
     {
-      type: "doc",
-      id: "reference/api/aicser-platform-api",
-    },
-    {
       type: "category",
       label: "Users",
       link: {
         type: "doc",
-        id: "reference/api/users",
+        id: "reference/api/aicser-platform-api",
       },
       items: [
         {
@@ -51,7 +47,7 @@ const sidebar: SidebarsConfig = {
       label: "Data Sources",
       link: {
         type: "doc",
-        id: "reference/api/data-sources",
+        id: "reference/api/aicser-platform-api",
       },
       items: [
         {
@@ -130,12 +126,6 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "reference/api/schemas/updatedatasourcerequest",
           label: "UpdateDataSourceRequest",
-          className: "schema",
-        },
-        {
-          type: "doc",
-          id: "reference/api/schemas/validationerror",
-          label: "ValidationError",
           className: "schema",
         },
       ],
