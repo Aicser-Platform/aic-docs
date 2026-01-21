@@ -1,0 +1,72 @@
+---
+id: signin
+title: "User login"
+description: "Authenticate user and return JWT access token"
+sidebar_label: "User login"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVttuGzkM/RWt+rIbTGwn6d7mqeklRYpi16jT7YNjBPQMbavVSCrFSeoa/vcFpfEldZtisfWLRxJJHR1Sh1pphnnU5Vift7xAx6YCNt7pSaFrjBWZkIbl/jqqNiIpcLUi5JacevXuSkFVYYyK/Qd0utA+IKVQl7UudTRzZ2Sa8GOLkZ/6eqnLVRoawlqXTC0WuvKO0bEsQQi2Q9N/HwXDSsdqgQ3IFy8D6lL76XusuIubA401NmCsLnSAGO881XKYQAKIDUbxzha7MJHJuLku9MxTA6zLbQz8BE2wYiNnftINe5Vv9Hpvh4dCbY32o42wagmHEOPJ6dlPep1+cowYvIsZ5elgIH/38zBqE8+z1iq4n7L/wd59dnImb3ImD062LnRaucnThwffHXKKQEjiIeR9f2PzVSL3U0A3J6dnj3/97fc//hxI3B+VSAfNd87yyi+ceu5RrD3NwZnPmfavEVQRAmN9A/wgthoYj9k0qCX3bDjt9Fa42hTE48HJYQ3cv6tqW/s/rAJq5G/wuiPkL8/7FYh1h3ld6AZ54eXaBx9TcOCFLnUfgumLS19SEPtbUYhIt0giQyvdktWlXjCHWPb7EEIPTBWRUqa+FKUh+bqtEgk5hl4X+yHKft/6CuzCRy7PBoPBQYTneIvWhwYdb0NMBFHVkuFlgvQ0lbGQrsvxZH95JHxmyvaNtrQJBjlfMttdiKL7uNgUwqt3VwfIRFPTRVN+ymAc1mpGvlHfYFF4lzS/2Qnsi02utoJ3WPv7GnYgSoU2bubTebraPE+5UEMLLFWszoeXutCSvAz6pDfoHZJ8tUD1FU8VyN+aGqN8zAmaBthUu0aiwFoVNg4zBG4JY5FpOL88Dv4OCWtVLYBYzdF1HUdcU4dqwMEcU26lWdXAoMCBXUYTe+ppayyrO8MLdQGRBZBYzby1/s64uXrzYnSlAhlXmWBlY99Swm2iqlF4l5x4UgEp3WlXYaEIrYGpsYaXRQqIEFH5mTKOcZ4R9q7dtXv0SL1EZtlpxECMtcye9NTR0f0LfnRUqpGZO9WGFDDXg1pu4FSEtViDjdfuVPyfeeewYvUcGMT7bbAeajUzFqPypKpunX0iZQoR47U7S1sLP58xeUVU55di9LFFWqa9IS/nzcX32j0Wt39MbMGa7PgypwJzZmJyzJKoaoiLqQeqY0fBG5l9bRojRMjcsTo6uiBExQZJop0MBqp7NsT+wreUbYbkdybF4EsjpbLZC8dIgUxMyJ61kX2jrOy3QTBqQ/DEMrrwpGIeFirdmc3wyU6FhMBbEw2nehjXvmqlxFKqJj9vlKv2VdyTrl9615sODVXS59xyNjeqA6G3LU0fbqyLL9Vxt7QutDUVuoh7sYfkAxlkoOUDvn1GamISENHrBtxeCGlGyvp50ul7t3q1azb/+XHYySPjJ+4HCyJfHb5V1yzGGoLRhRah0/n9EEVJs9hNCi2SLmarlVTvW7LrtUynShWZLvQtkIGpyNZ4si70AqGWR8h4pT/gUpf6WYZ/fCVgxNy2Auqgb0pLyR7nVYWBH7Sd7HW/4d8jkfVp99ZtfC0+BHfyXoU7Xer0Thbv1ELS3EpbcPMW5mKbY8rvX3aEC2g=
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"User login"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/auth/users/signin"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authenticate user and return JWT access token
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password"],"properties":{"email":{"type":"string","format":"email","example":"user@example.com"},"password":{"type":"string","format":"password","example":"SecurePass123!"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful authentication","content":{"application/json":{"schema":{"type":"object","properties":{"access_token":{"type":"string"},"token_type":{"type":"string","example":"bearer"},"user":{"type":"object","properties":{"id":{"type":"string","example":"usr_1234567890"},"email":{"type":"string","format":"email","example":"user@example.com"},"name":{"type":"string","example":"John Doe"},"organization":{"type":"string"},"created_at":{"type":"string","format":"date-time"}},"title":"User"}}}}}},"401":{"description":"Authentication required","content":{"application/json":{"schema":{"type":"object","properties":{"detail":{"type":"string","example":"Not authenticated"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,72 @@
+---
+id: query-data-source
+title: "Query specific data source"
+description: "Query specific data source"
+sidebar_label: "Query specific data source"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9VU1z2zYQ/SuYzSXx0KKS9MRTnQ9nnOlMXctpDrIOK3AlIgEBBFjaUTX8750FKNux3J5ILN5+4C3wdg+M2wTNEv4aKBpKsKrAB4rIxruLFhr4MVDcfUDGhR+iJqggkR6i4R00yz28I4wUzwbuoFmuxlUFASP2xBRTBjjsCRowLVRgHDQQkDuoINKPwURqoeE4UAVJd9QjNHvgXRCPxNG4LYwSU8CU+J1vd4J46qu9Y3IsWxiCNTqXX39L3ontKLRffyPNMI7jKLFT8C5REsCb+Vw+LSUdTZAo0GRudipSGiwnEJ/n9lMgbTZGqxYZVTqw1RN3XogMPjFU5fgN1IKqCyrVe9OOdWY68xtvD+wN0UIDHXNITV1jCDM0OlGcad/D0zouo28HLQtVYsBYPQ7R1LX1Gm3nEzdv5/P5UYQPdEvWh54c34dYPXR8IUQWoh73/Z5XSQJTK2W9ziCopp9zH3tkaODz1+uj1J+/Xiv238kpv2Y0jlq1ib5XNQZT48BdPSSKqU5m64zLXZD+Xj3cjI8/sQ+WoNmPctU2PldmWExwlmlTlxZ542Ovzi4voALhuaR/PZvPjvm47kg946lC9LempSQ/24h9j2y0Qq0pJcVeobUqHBw2hDxESlU50NnFafB3FKlVusPIaktuenDiKqdUPTrcUm4DurbcKHRod8mkmXo3GMvqznCnzjGxFCSojbfW3xm3VVcfF9cqROO0CVYS+yHmuk1SLQmDwq6PKlCUEtFpqlQka3BtrOFdlQMSJlJ+o4xj2pYKZzfuxr14oT4Rs2RaMEamVqyvZ+rkRC4EOZ5e4MlJoxZm69QQcsDSWbU7lKMjtYJGm27cG/F/750jzUoER7y/BOuxVRtjKSkflZ722WdS1pgo3bi3ObXw8w9lr0Tq7EJA+U3l3Fi2S3LxvXG/idvfJg1oTXH8VFpBpTMpO+pIYmkxdWuPsU0TBVdi/cP0RogQ26k6OTmPRIoNRYn2ej5Xk3KluvNDLJjL6B8g1fwpSKkC++iYYogm5creD4l9r6zkO1SwGELwkWV17qNKZVkp6tHYw/L3B8EQAm9NMpzvw7L1epArllu1enkQmdbr9EhlXs1uHBSJRZ0ldlL06V1MRUAFOa0I91FiqJ4K2cPWWIE1mlyiR7Evow/REGMWxP/yrZliXwRZxLVH9yjE/4ryL6/8Xr6YfnIdLIq8TFn3k14vQQKIthXFhgqaPNKKaK8qEFEV3H4vl/JLtOMo5rLfLFcV3GI0uBY1Wu6hNUn+W2g2aBMdlXQ/0uDl1TTtXimoni91MqITtm7RDrKCCr7TrozecTVW0BG2FHP2svG+5Di9FvcHx6MRKiPgfoxd/rkQ8V5Po7j3rfhEvJOZjnclsc/nyIMi2/Zg0W0H3Aq2xJSu4a/j48m4yJU+e7T9viCuZV6M4/1J8/yQw47jv0+wD+s=
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Query specific data source"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/data/sources/{id}/query"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Query specific data source
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Query results"}}}
+>
+  
+</StatusCodes>
+
+
+      

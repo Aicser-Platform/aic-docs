@@ -1,0 +1,72 @@
+---
+id: test-database-connection
+title: "Test database connection"
+description: "Test database connection"
+sidebar_label: "Test database connection"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9Vktz2zYQ/isY5NJ6aFF59MJT7STOONOZeiKlOcg6rMgVhQQEkMXSiqrhf+8sSFr0oz6RAPa93z6OmqGOuljpD8CgFr6lEqNeZ9oHJGDj3XWlC80YWSg2EPG9dw5LedKZjli2ZPigi9VRXyIQ0kXLO12s1t0604Q/W4x86auDLo7paAgrXTC1mOnSO0bH8gQhWFMmjfn36J3cxXKHDcgfHwLqQvvNdyxZZxNBq/4t0zsf5aUarBQfAokXbDCKDAcNTmRFJuNqnWn8BU2wcnVDvmqTZ2p0VnfZwPAMo2sbMSD4yDVh/Gl1ppvD8PWu9tVGZ3pj6p8t0kGi5fx+a+FHsu6kdyKgGxx50c5qMxsOs9I3whM8TXmMY6yRpkx/vHv7ppuE50UF4MAe2JRRZLcR6fnYiWKIce+pek7e1lMDLP6NRJ1E03DS8Qycuk4ICGPwLvZJezOfy6fCWJIJiarQJxYlwFSEsbWcpD8kXMrr6LIqp8BtkHe+GoKvxRFBrc6FOh9ZchGfUE53SDGBvCWrC71jDrHIcwhhBqaMSCkVjw2YIKqXobtsKqLIc+tLsJLz4u18Pn8i4QPeofWhQcf3ItanultIifShmlbffTJEiTiQyHShN4lIUJl+rsYUff62fKL687elYv8DnfIbBuOwUlvyjcohmBxa3uUCjZhHUzvjUvilcr+cav7jiKix+p4tsbHCHhZSXwaPsT5CXeA8RfMEslPEnsB4AuoEvcZtfQrWgMmLlEl1Y4EFvOri5lpnWlLfR+T1bD57mqLlDtUznCqQvzMVRvmpCZoG2JQKyhJjVOwVWKvCyLBF4JYwZn2ML67Pg98jYaXKHRCrGt3QkIVVPFQNOKgxIQNclXCuUhiiiTN12RrLam94p64gshgkVFtvrd8bV6svHxdLFci40gQrin1LyW4TVYWSVEm4JxWQUim7EjNFaA1sjDV8yJJAlNLyW5V6Tm/h7Nbdulev1CdkFk0LBmKs5Pb1TJ2dCUbR8dDuz84KtTC1U21IAnuwqcNoTklYCTXYeOveCP9Q/wlBwv01WA+V2hqLUXkaC10CNSIk3rq3SbXE519MXBHVxbUQpfacdEP/3CsX3lv3Ttj+MbEFa3rGT30qsM9MTIwlodxUEHcbD1TFIQRf5PYv0xgJhNydq7OzK0JUbJBE2uv5XA1jMuY731JPc0P+RJLNHxMp1ZN9dIwUyMRk2fs2sm+UFX2jBYs2SMnI6cqTiv0xU9iAsePxz1MPkwDemWg44WFV+bIViKVUrX8b+17lyzhpfL/PbqWpyjyHkif1PtTFYIQMGVErRfhEsRTuw956euoybU2JLj7qJYEMMqTZ+n+8OSM1MXUn6S8NuImIFwbEgxq/76eMvzgPFqTfDTqPw+xYpXY0XUGytDfJrO+b2Uofj/LwlWzXyXW/FxSrdabvgAxspAut1rIEIFRIaeD8wEM/82RVOl/2284d2Da1vcdrkwyH+9l28/dC2vpmWL8aXwkPwV5WKNjrQmvZ9IQ7jZB0d9QWXN1CLbS9TAkePBwsjwZJsnR4AneYWHg89hRLmSRdp7PBoTRZdLfuuu4/vVSlJA==
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Test database connection"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/data/database/test"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Test database connection
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["type","host","database"],"properties":{"name":{"type":"string","example":"Production Database"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","snowflake"],"example":"postgresql"},"host":{"type":"string","example":"db.example.com"},"port":{"type":"integer","example":5432},"database":{"type":"string","example":"analytics"},"username":{"type":"string"},"password":{"type":"string","format":"password"}},"title":"DatabaseConnection"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Connection test result"}}}
+>
+  
+</StatusCodes>
+
+
+      

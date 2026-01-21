@@ -1,0 +1,72 @@
+---
+id: execute-query
+title: "Execute SQL query"
+description: "Execute SQL query"
+sidebar_label: "Execute SQL query"
+hide_title: true
+hide_table_of_contents: true
+api: eJx1VU1vGzkM/SsCe9kNph633dOcNk2TIkWBTet0e3CMgtbQtlqNpFCcpK7h/76gZpK4STYHZ0Tx4+mRetqB4DpDM4dPPbGjDIsKYiJGcTGct9AA/STbC+n+FirIZHt2soVmvoO3hEx83MsGmvliv6iA6bqnLG9ju4VmV5aOqYVGuKcKbAxCQXQLU/LOljr19xyD2rLdUIf6JdtE0EBcficrUEFiRSWKUP2u/YFTFnZhDfsKWhT8lmPPlr659hmX8qcoc4ohD8leT6f6r6Vs2SXFA02hY2uYcu8lg8b8vn86sGJmnz6a65GajmQTlbIUc8GMygvUmFx9PdBbj2wWIvmGOBcee/bQwEYk5aauMaUJOpuJJzZ28Lj0Bce2t7owQw7YV4cpmrr20aLfxCzNm+l0+iTDO7ohH1NHQe5TLB5aO9MuDNwcNvieTC2iByhu0MCyOEE1fpxF7lCggQ9fL5+U/vD10kj8QcHEpaAL1JoVx84UkrCXTd1n4lxntw4uFOJ1OD4/jNXpT+ySp/sxuOvt0+4fDIYLq1hO4ERD4bjQay48yipyZ44vzqEC7ccA89VkOnnK2+WGzDORJnG8cS1l/Vgzdh2KswatpZyNRIPem3QXsCKUnilXw8GPz1+meEtMrbEbZDFrCuP101Blw3QYcE2lXRhao+c0GNBvs8sT87Z3Xsytk405wywKSL1W0ft468LafD6dXZrELliXvBaOPRfcLpuWlGntQmSTiBUiBkuVYfIOl8472VYlIWEmE1fGBaH1gHByFa7CixfmPYlopZkgC7VqfTUxR0c6OBRkvOZHR42ZuXUwfSoJhwkw2zs4lqlVb/T5KrzW+JMYAlkx71BQo78kH7E1K+cpm8jGjvsSCylLzJSvwptSWvn5RSUqkzk+V6dyU0ttHLaH4hp7Ff7SsH9d7tG7IfD90AoaOpNLoGVSS4t5s4zIbR4p+KzWj65zSoTaXpqjozMmMuKINdur6dSM8pjrTex58Lng+OBSTR87GTO4nQYhTuxyQXbSZ4md8VrvDsGsTymy6OosssnDsjLUofN3y78fhEUJvHHZSZmHeRttryNWWrX4406M2mjzgRr9ObkKMOg42qLjAbuDGzWCgApKWb2ETwpD9VjwHrb2FXhnKWQ6yH3BMbEjwSKz/xdbC3E3aLUKcIfhIMVzev3b5b5XN6GfUiePqj5jsd0o5XPA5KCCUcz1kKOcLypQuVWX3U7H8Av7/V7NQ7FmvqjgBtnhUvVnvthXsCFsiYv+/6AtNHAyPI4vLxWIuvteAT15KFWr79+ai39mqrLL8cHtYqsxjLdQld8GQF90jS6KXmw78BjWPa7Vd8iptOHvOv9I1wvScQvD9gDhbjd4XKqw7/dQjQcqQg/7xX6//w9Xn+t8
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Execute SQL query"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/queries/execute"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Execute SQL query
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"sql":{"type":"string"},"data_source_id":{"type":"string"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Query results"}}}
+>
+  
+</StatusCodes>
+
+
+      

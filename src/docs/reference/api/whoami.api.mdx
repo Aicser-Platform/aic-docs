@@ -1,0 +1,64 @@
+---
+id: whoami
+title: "Get current user"
+description: "Retrieve authenticated user information"
+sidebar_label: "Get current user"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVVtvEzsQ/ivW8HJOtSQpcG77RLm0KuKhouXw0EZo4p0mBq9txrMpIdr/fjTeDQktQjp5ydqey+dvZj5vQXCZob6Gk05WFMRZFBcDzCtoKFt2qSxreEfCjtZkcG9IjekysXHhNnI7OFYQE3H5Pm+ghrtVxNZBBZlsx042UF9v4QUhE2tOqK/n/bwCppxiyJSh3sKT2Uz/fkTwsmOmID9LaWMQCqI+mJIfLzH9lNVxC9muqEX9kk0iqCEuPpEVqCCxohU3pHXNgU0WdmEJFdBXbJPXrS7zx+MnT5/98edff/8zg74CatH5nzkN6KAeLX6MQvx8XE5sbDVOwJZ+nftNXAXzKpJaR15icN+G2z/w6iuwTFqdjyi/xNag0GNxLUHfVyBOSqb3mRh6/VXQkqyilnFJhS7UgsEUk5tqH0wPqstr4lyK27GHGlYiKdfTKaY0QWczcbns/b664Nh0VhdmiAF9dRiink59tOhXMUv9dDabPYjwitbkY2q1N3Yh5vt+u9TiD/U97LrvtGgSvUAxgxoWxQiq8eN0R9abD1cPUr/5cGUkfqZg4kLQBWrMLcfW7AnSYudpdsvgQmFZG7dkH9k+KdSYC4+idTEnF+dQgXI5pDiezCYP73y1IvMTT5M4rl1DWT+WjK1OiDVoLeVsJBr03qSdwy2hdEy5GkCfnD9O8Y6YGmNXyGKWFMZJVtcydi0GXFKhGkNjGhQ0GNBvsssT86JzXsydk5U5xSwKSK1uo/fxzoWleff68sokdsG65DVx7Ljgdtk0pCwpg5FNIi5dGixVhsk7XDjvZFOVgISZTLw1LggtB4STm3ATHj0yZySimS4FWajR3eOJOTr6Ud6Ojmpz6ZbBdKkEHKpnNjs4lqlRa/T5JjxR/5cxBLJiXqGger9PPmJjbp2nbCIbO55LLKQsMFO+CU9LauXnGxWvTObkXI2+dMSbkhuH4yG5+t6EZ+r2r8sdejc4ng2loKEyuTgOQ24azKtFRG7ySME73X3rWqdE6N5jc3R0ykRGHLFGO57NDNOXjrLk6Sp2PNhccNybVLP7RsYMZq+DECd2uSB72WWJrfGab4fgskspsujqNLLJw7IyRQt3y+d7UVAC1y47Kf1w3UTbaYuVUs1/2wlJE20+UJLfJzc76UdbdG4Q0d1EjSDgu0jDw8RQ3Rer/VFfgXeWQqaD2BccEzsS5M0vfKdC3OYy7ilmaTEchDgjMfbgKbs/29v9a/Y/Ht1RzIS+yjR5VLEZ8W1H1b4GTKrUGgqq3bs8r0CVVY+3W+3a9+z7XrdLh+rrXMEa2eFC5ep63lewImyIi9R/po0ybi0lZXqNvlMYDx5hFeTvb8nZ66sdjr0M35PdEn08wrA5iL3dDhZXqrt9D9UIougw9PO+7/8Dr6cPfA==
+sidebar_class_name: "get api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get current user"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/auth/whoami"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve authenticated user information
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Current user information","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"usr_1234567890"},"email":{"type":"string","format":"email","example":"user@example.com"},"name":{"type":"string","example":"John Doe"},"organization":{"type":"string"},"created_at":{"type":"string","format":"date-time"}},"title":"User"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

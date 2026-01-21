@@ -1,0 +1,72 @@
+---
+id: refresh-token
+title: "Refresh access token"
+description: "Get new access token using refresh token"
+sidebar_label: "Refresh access token"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVktvGzcQ/ivE5NIaa0lJetpTnYcDB0Vr2E5zsIVgxB1pmXBJZjhrRxH034vhriL50QAFqouW8/w4M/vNbkBwlaG+hpNeWgriLIqLAeYVNJQtu1SONbwjMYHuDFpLORuJXyiYPruwMkxLptwOMqggJuIS5ayBGkbt1ahk+tpTllexWUO9KUfH1EAt3FMFNgahIKrClPwIZ/o5K4gNZNtSh/ok60RQQ1x8JitQQWJNK47yELYk/TRA2ptnYRdWsC0/BZNTDHnweTGb6d/9a//54Mrwv0Ecov4rwgqK5tMgfvoC2wo6kjZqmVPMJQdKCzVMMbkp9tJOx0pABZn4llibvYGePdTQiqRcT6eY0gSdzcQTGzt42Ppzjk1v9WCGGLCtDkPU06mPFn0bs9QvZ7PZowhv6JZ8TB0F+RFirohsz07WBdIrQibWMYT6en6ovtSKDkU7NPpRE8Wg9ytmUMOiGEE1PpxG7lCghvcfrx4he//xapzluBB0gRqz5NiZfQH7TJyn2a2CC6Al10Zf7Kf47Tfskqcnpu6gly4sY0HsRE3hpFTbnHuUZeTOnJyfQQXangHW88ls8riMVy2ZJzxN4njrGsr6sGLsOhRn92Nr0HuTdg5LQumZcjVc9OTsOMU7YmqMbZHFrCiMr6+66u1NhwFXVLqHoTENChoM6NfZ5Yl51Tsv5s5Ja04xiwJSq2X0Pt4pP1y8vbwyiV2wLnlNHHsuuF02DWllteqRTSJWiBgsVYbJO1w472RdlYCEmUxcGheEVgPCyU24Cc+emXckopkuBVmoUenziTk6uk9qR0e1uXSrYPpUAg4dN+sdHMvUqDX6fBNeqP/rGAJZMW9QUL0/JB+xMUvnKZvIxo56iaUoC8yUb8LLklrr852KVyZzcqZGX3vidcmNg3pIrr434Td1+9vlHr0bHN8NraChM7k4WiaVNJjbRURu8liCC5X+4TqnhVDZsTk6OmUiI45Yoz2fzczIvnnaxp4Hm3OOe5Nq9tDImMHsbRDixC4XZK/7LLEzXvPtEFz2KUUWPZ1GNnk4VoY6dH53/H3PM1rAW5edlHm4bqLtdcRKq+a/7LipiTYfkNOvk5sdB6MtHBywO3ijRhBQQUmrL+GjxFA95L+9aluBd5ZCpoPY5xwTOxLk9U98p0Lc5UIRSsYdhoMQF+OOfLBL7r3fm/1q+S/rdmRBoW8yTR6VpUaQm3EdXAMmBxUon5UVPKyEeQVK2arfbHR2P7DfblVc5lRpuIJbZIcLJa3r+baClrAhLoT9hdZQw+sB8vGVolBz3yuaR5tRV8bgcWItJfmp7fxgsZ3/dam0vRg/GLrYqA/jnd4E76CG8smh3sPqV9kGPIZVjyu1HWLq7x8CDx49
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Refresh access token"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/auth/refresh"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get new access token using refresh token
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"refresh_token":{"type":"string"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"New access token","content":{"application/json":{"schema":{"type":"object","properties":{"access_token":{"type":"string"},"token_type":{"type":"string"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

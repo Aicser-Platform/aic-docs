@@ -1,0 +1,33 @@
+---
+id: databaseconnection
+title: "DatabaseConnection"
+description: ""
+sidebar_label: "DatabaseConnection"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"name":"Production Database","type":"postgresql","host":"db.example.com","port":5432,"database":"analytics","username":"string","password":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"DatabaseConnection"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","required":["type","host","database"],"properties":{"name":{"type":"string","example":"Production Database"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","snowflake"],"example":"postgresql"},"host":{"type":"string","example":"db.example.com"},"port":{"type":"integer","example":5432},"database":{"type":"string","example":"analytics"},"username":{"type":"string"},"password":{"type":"string","format":"password"}},"title":"DatabaseConnection"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

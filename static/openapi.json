@@ -2,69 +2,136 @@ openapi: 3.0.0
 info:
   title: Aicser Platform API
   version: 1.0.0
-  description: The Aicser Platform API provides programmatic access to all platform features, from AI-powered chart generation to user management and data analysis. Built with FastAPI and following REST principles, our API is designed for performance, reliability, and ease of integration.
+  description: |
+    The Aicser Platform API provides programmatic access to all platform features, from AI-powered chart generation to user management and data analysis. Built with FastAPI and following REST principles, our API is designed for performance, reliability, and ease of integration.
+    
+    ## Getting Started
+    
+    1. **Authentication**: Sign up and obtain your API credentials
+    2. **Connect Data**: Upload files or connect to databases
+    3. **Analyze**: Use AI to query and analyze your data
+    4. **Visualize**: Generate charts and create dashboards
+    
+    ## Rate Limiting
+    
+    - **Free tier**: 100 requests/hour
+    - **Pro tier**: 1,000 requests/hour  
+    - **Enterprise**: Custom limits
+    
+    ## Support
+    
+    For support, email support@aicser.com or visit our [documentation](https://docs.aicser.com).
+  contact:
+    name: Aicser Support
+    email: support@aicser.com
+    url: https://aicser.com
+  license:
+    name: Proprietary
+    url: https://aicser.com/terms
 
 servers:
-  - url: https://app.aicser.com/api
+  - url: https://app.aicser.com
     description: Production server
-  - url: http://localhost:3000/api
+  - url: http://localhost:3000
     description: Development server
 
 tags:
-  - name: Users
-    description: User management and authentication
+  - name: Authentication
+    description: User authentication and session management
+  - name: AI Analytics
+    description: AI-powered data analysis and natural language queries
   - name: Data Sources
-    description: Connect and manage data sources
+    description: Upload files and connect to databases and warehouses
+  - name: Charts
+    description: Generate and manage data visualizations
+  - name: Dashboards
+    description: Create and manage interactive dashboards
+  - name: Queries
+    description: Execute and validate SQL queries
+  - name: Organizations
+    description: Manage organizations and projects
+  - name: Conversations
+    description: Chat conversations and saved assets
+  - name: Health
+    description: System health and monitoring endpoints
 
 paths:
-  # Users Endpoints
-  /users:
-    get:
-      tags:
-        - Users
-      summary: List all users
-      description: Retrieve a list of all users in the system
-      operationId: listUsers
-      parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 20
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  users:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/User'
-                  total:
-                    type: integer
-                  page:
-                    type: integer
-    
+  # ============================================
+  # AUTHENTICATION (5 endpoints)
+  # ============================================
+  
+  /api/auth/users/signin:
     post:
       tags:
-        - Users
-      summary: Create a new user
-      description: Create a new user account
-      operationId: createUser
+        - Authentication
+      summary: User login
+      description: Authenticate user and return JWT access token
+      operationId: signin
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateUserRequest'
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: SecurePass123!
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: bearer
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /api/auth/users/signup:
+    post:
+      tags:
+        - Authentication
+      summary: User registration
+      description: Create a new user account
+      operationId: signup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+                - name
+              properties:
+                email:
+                  type: string
+                  format: email
+                name:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                  minLength: 8
+                organization:
+                  type: string
       responses:
         '201':
           description: User created successfully
@@ -73,210 +140,1151 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
 
-  /users/{userId}:
-    get:
+  /api/auth/users/signout:
+    post:
       tags:
-        - Users
-      summary: Get user by ID
-      description: Retrieve a specific user by their ID
-      operationId: getUserById
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+        - Authentication
+      summary: User logout
+      description: Invalidate current session
+      operationId: signout
+      security:
+        - BearerAuth: []
       responses:
         '200':
-          description: Successful response
+          description: Successfully logged out
+
+  /api/auth/whoami:
+    get:
+      tags:
+        - Authentication
+      summary: Get current user
+      description: Retrieve authenticated user information
+      operationId: whoami
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Current user information
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        '404':
-          description: User not found
-    
-    put:
+
+  /api/auth/refresh:
+    post:
       tags:
-        - Users
-      summary: Update user
-      description: Update an existing user's information
-      operationId: updateUser
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+        - Authentication
+      summary: Refresh access token
+      description: Get new access token using refresh token
+      operationId: refreshToken
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserRequest'
+              type: object
+              properties:
+                refresh_token:
+                  type: string
       responses:
         '200':
-          description: User updated successfully
+          description: New access token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-    
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+
+  # ============================================
+  # AI ANALYTICS (8 endpoints)
+  # ============================================
+  
+  /chats/chat:
+    post:
+      tags:
+        - AI Analytics
+      summary: Main chat endpoint
+      description: Handles all AI chat scenarios
+      operationId: chat
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: Show me sales trends for Q4
+                data_source_id:
+                  type: string
+                conversation_id:
+                  type: string
+      responses:
+        '200':
+          description: Chat response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                  chart:
+                    type: object
+                  sql_query:
+                    type: string
+
+  /ai/chat/analyze:
+    post:
+      tags:
+        - AI Analytics
+      summary: AI-powered query analysis
+      operationId: analyzeQuery
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                data_source_id:
+                  type: string
+      responses:
+        '200':
+          description: Analysis results
+
+  /ai/chat/generate-sql:
+    post:
+      tags:
+        - AI Analytics
+      summary: Generate SQL from natural language
+      operationId: generateSQL
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                data_source_id:
+                  type: string
+      responses:
+        '200':
+          description: Generated SQL query
+
+  /ai/insights/business:
+    post:
+      tags:
+        - AI Analytics
+      summary: Generate business insights
+      operationId: businessInsights
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data_source_id:
+                  type: string
+                metrics:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Business insights
+
+  /ai/workflow/integrated:
+    post:
+      tags:
+        - AI Analytics
+      summary: Integrated AI workflow
+      operationId: integratedWorkflow
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                data_source_id:
+                  type: string
+                workflow_type:
+                  type: string
+                  enum: [analysis, visualization, both]
+      responses:
+        '200':
+          description: Workflow results
+
+  /ai/echarts/generate:
+    post:
+      tags:
+        - AI Analytics
+      summary: Generate ECharts configuration
+      operationId: generateECharts
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                chart_type:
+                  type: string
+                  enum: [line, bar, pie, scatter, heatmap]
+      responses:
+        '200':
+          description: ECharts configuration
+
+  /ai/models:
+    get:
+      tags:
+        - AI Analytics
+      summary: Get available AI models
+      operationId: getAIModels
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of AI models
+
+  /ai/health:
+    get:
+      tags:
+        - AI Analytics
+      summary: AI service health check
+      operationId: aiHealth
+      responses:
+        '200':
+          description: AI service status
+
+  # ============================================
+  # DATA SOURCES (12 endpoints)
+  # ============================================
+  
+  /data/upload:
+    post:
+      tags:
+        - Data Sources
+      summary: Upload CSV or Excel file
+      operationId: uploadFile
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+      responses:
+        '201':
+          description: File uploaded successfully
+
+  /files/list:
+    get:
+      tags:
+        - Data Sources
+      summary: List uploaded files
+      operationId: listFiles
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of files
+
+  /files/{file_id}:
     delete:
       tags:
-        - Users
-      summary: Delete user
-      description: Delete a user from the system
-      operationId: deleteUser
+        - Data Sources
+      summary: Delete file
+      operationId: deleteFile
+      security:
+        - BearerAuth: []
       parameters:
-        - name: userId
+        - name: file_id
           in: path
           required: true
           schema:
             type: string
       responses:
         '204':
-          description: User deleted successfully
-        '404':
-          description: User not found
+          description: File deleted
 
-  # Data Sources Endpoints
+  /data/database/test:
+    post:
+      tags:
+        - Data Sources
+      summary: Test database connection
+      operationId: testDatabaseConnection
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatabaseConnection'
+      responses:
+        '200':
+          description: Connection test result
+
+  /data/database/connect:
+    post:
+      tags:
+        - Data Sources
+      summary: Connect to database
+      operationId: connectDatabase
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DatabaseConnection'
+      responses:
+        '201':
+          description: Database connected
+
   /data/sources:
     get:
       tags:
         - Data Sources
       summary: List all data sources
-      description: Retrieve a list of all connected data sources
       operationId: listDataSources
+      security:
+        - BearerAuth: []
       responses:
         '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  dataSources:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/DataSource'
-    
-    post:
-      tags:
-        - Data Sources
-      summary: Create data source
-      description: Connect a new data source
-      operationId: createDataSource
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateDataSourceRequest'
-      responses:
-        '201':
-          description: Data source created successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSource'
+          description: List of data sources
 
-  /data/sources/{dataSourceId}:
+  /data/sources/{id}:
     get:
       tags:
         - Data Sources
-      summary: Get data source by ID
-      description: Retrieve a specific data source by its ID
-      operationId: getDataSourceById
+      summary: Get data source details
+      operationId: getDataSource
+      security:
+        - BearerAuth: []
       parameters:
-        - name: dataSourceId
+        - name: id
           in: path
           required: true
-          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
           schema:
             type: string
-            example: db_postgresql_1768796333
       responses:
         '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSource'
-    
-    put:
-      tags:
-        - Data Sources
-      summary: Update data source
-      description: Update an existing data source configuration
-      operationId: updateDataSource
-      parameters:
-        - name: dataSourceId
-          in: path
-          required: true
-          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
-          schema:
-            type: string
-            example: db_postgresql_1768796333
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateDataSourceRequest'
-      responses:
-        '200':
-          description: Data source updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataSource'
-    
+          description: Data source details
     delete:
       tags:
         - Data Sources
       summary: Delete data source
-      description: Remove a data source connection
       operationId: deleteDataSource
+      security:
+        - BearerAuth: []
       parameters:
-        - name: dataSourceId
+        - name: id
           in: path
           required: true
-          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
           schema:
             type: string
-            example: db_postgresql_1768796333
       responses:
         '204':
-          description: Data source deleted successfully
+          description: Data source deleted
 
-  /data/sources/{dataSourceId}/test:
+  /data/sources/{id}/schema:
+    get:
+      tags:
+        - Data Sources
+      summary: Get database schema
+      operationId: getDataSourceSchema
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Database schema
+
+  /data/warehouse/test:
     post:
       tags:
         - Data Sources
-      summary: Test data source connection
-      description: Test the connection to a data source
-      operationId: testDataSource
-      parameters:
-        - name: dataSourceId
-          in: path
-          required: true
-          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
-          schema:
-            type: string
-            example: db_postgresql_1768796333
+      summary: Test warehouse connection
+      operationId: testWarehouseConnection
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
       responses:
         '200':
-          description: Connection test successful
+          description: Test result
+
+  /data/warehouses/connect:
+    post:
+      tags:
+        - Data Sources
+      summary: Connect to warehouse
+      operationId: connectWarehouse
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Warehouse connected
+
+  /data/enterprise/connections:
+    get:
+      tags:
+        - Data Sources
+      summary: List enterprise connections
+      operationId: listEnterpriseConnections
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Enterprise connections
+
+  # ============================================
+  # CHARTS (6 endpoints)
+  # ============================================
+  
+  /charts/generate:
+    post:
+      tags:
+        - Charts
+      summary: Generate chart from data
+      operationId: generateChart
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data_source_id:
+                  type: string
+                query:
+                  type: string
+                chart_type:
+                  type: string
+      responses:
+        '201':
+          description: Chart generated
+
+  /charts/mcp-chart:
+    post:
+      tags:
+        - Charts
+      summary: Generate chart using MCP
+      operationId: mcpChart
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Chart created
+
+  /charts/recommendations:
+    post:
+      tags:
+        - Charts
+      summary: Get chart recommendations
+      operationId: chartRecommendations
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data_source_id:
+                  type: string
+      responses:
+        '200':
+          description: Chart recommendations
+
+  /charts/:
+    get:
+      tags:
+        - Charts
+      summary: List all charts
+      operationId: listCharts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of charts
+    post:
+      tags:
+        - Charts
+      summary: Create/save chart
+      operationId: createChart
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Chart created
+
+  /charts/{id}:
+    get:
+      tags:
+        - Charts
+      summary: Get chart details
+      operationId: getChart
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chart details
+
+  # ============================================
+  # DASHBOARDS (8 endpoints)
+  # ============================================
+  
+  /charts/api/organizations/{org_id}/projects/{project_id}/dashboards:
+    get:
+      tags:
+        - Dashboards
+      summary: List project dashboards
+      operationId: listProjectDashboards
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: org_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of dashboards
+    post:
+      tags:
+        - Dashboards
+      summary: Create project dashboard
+      operationId: createProjectDashboard
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: org_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Dashboard created
+
+  /charts/api/organizations/{org_id}/projects/{project_id}/dashboards/{id}:
+    get:
+      tags:
+        - Dashboards
+      summary: Get project dashboard
+      operationId: getProjectDashboard
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: org_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dashboard details
+    put:
+      tags:
+        - Dashboards
+      summary: Update project dashboard
+      operationId: updateProjectDashboard
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: org_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Dashboard updated
+    delete:
+      tags:
+        - Dashboards
+      summary: Delete project dashboard
+      operationId: deleteProjectDashboard
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: org_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Dashboard deleted
+
+  /charts/dashboards/:
+    get:
+      tags:
+        - Dashboards
+      summary: List global dashboards
+      operationId: listGlobalDashboards
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of dashboards
+    post:
+      tags:
+        - Dashboards
+      summary: Create global dashboard
+      operationId: createGlobalDashboard
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Dashboard created
+
+  /charts/dashboards/{id}:
+    get:
+      tags:
+        - Dashboards
+      summary: Get global dashboard
+      operationId: getGlobalDashboard
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dashboard details
+
+  # ============================================
+  # QUERIES (5 endpoints)
+  # ============================================
+  
+  /api/queries/execute:
+    post:
+      tags:
+        - Queries
+      summary: Execute SQL query
+      operationId: executeQuery
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sql:
+                  type: string
+                data_source_id:
+                  type: string
+      responses:
+        '200':
+          description: Query results
+
+  /api/queries/validate:
+    post:
+      tags:
+        - Queries
+      summary: Validate SQL query
+      operationId: validateQuery
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sql:
+                  type: string
+      responses:
+        '200':
+          description: Validation result
+
+  /api/queries/history:
+    get:
+      tags:
+        - Queries
+      summary: Query history
+      operationId: queryHistory
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Query history
+
+  /data/sources/{id}/query:
+    post:
+      tags:
+        - Queries
+      summary: Query specific data source
+      operationId: queryDataSource
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Query results
+
+  /data/sources/{id}/data:
+    get:
+      tags:
+        - Queries
+      summary: Get data from source
+      operationId: getDataFromSource
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Data from source
+
+  # ============================================
+  # ORGANIZATIONS & PROJECTS (8 endpoints)
+  # ============================================
+  
+  /api/organizations:
+    get:
+      tags:
+        - Organizations
+      summary: List organizations
+      operationId: listOrganizations
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of organizations
+    post:
+      tags:
+        - Organizations
+      summary: Create organization
+      operationId: createOrganization
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Organization created
+
+  /api/organizations/{id}:
+    get:
+      tags:
+        - Organizations
+      summary: Get organization
+      operationId: getOrganization
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Organization details
+    put:
+      tags:
+        - Organizations
+      summary: Update organization
+      operationId: updateOrganization
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Organization updated
+
+  /api/projects:
+    get:
+      tags:
+        - Organizations
+      summary: List projects
+      operationId: listProjects
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of projects
+    post:
+      tags:
+        - Organizations
+      summary: Create project
+      operationId: createProject
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Project created
+
+  /api/projects/{id}:
+    get:
+      tags:
+        - Organizations
+      summary: Get project
+      operationId: getProject
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project details
+    put:
+      tags:
+        - Organizations
+      summary: Update project
+      operationId: updateProject
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Project updated
+
+  # ============================================
+  # CONVERSATIONS & ASSETS (6 endpoints)
+  # ============================================
+  
+  /conversations:
+    get:
+      tags:
+        - Conversations
+      summary: List conversations
+      operationId: listConversations
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of conversations
+    post:
+      tags:
+        - Conversations
+      summary: Create conversation
+      operationId: createConversation
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Conversation created
+
+  /conversations/{id}:
+    get:
+      tags:
+        - Conversations
+      summary: Get conversation
+      operationId: getConversation
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Conversation details
+
+  /conversations/{id}/messages:
+    get:
+      tags:
+        - Conversations
+      summary: Get messages
+      operationId: getMessages
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Conversation messages
+
+  /assets:
+    get:
+      tags:
+        - Conversations
+      summary: List saved assets
+      operationId: listAssets
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of assets
+    post:
+      tags:
+        - Conversations
+      summary: Save asset
+      operationId: saveAsset
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Asset saved
+
+  # ============================================
+  # HEALTH & STATUS (4 endpoints)
+  # ============================================
+  
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Platform health check
+      operationId: platformHealth
+      responses:
+        '200':
+          description: Platform status
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  success:
-                    type: boolean
-                  message:
+                  status:
                     type: string
+                    example: healthy
+                  version:
+                    type: string
+                  uptime:
+                    type: integer
+
+  /data/health:
+    get:
+      tags:
+        - Health
+      summary: Data service health
+      operationId: dataHealth
+      responses:
+        '200':
+          description: Data service status
+
+  /debug/routes:
+    get:
+      tags:
+        - Health
+      summary: List all available routes
+      operationId: debugRoutes
+      responses:
+        '200':
+          description: Available routes
 
 components:
   schemas:
@@ -285,130 +1293,115 @@ components:
       properties:
         id:
           type: string
-          example: "usr_123456"
+          example: usr_1234567890
         email:
           type: string
           format: email
-          example: "user@example.com"
+          example: user@example.com
         name:
           type: string
-          example: "John Doe"
-        role:
+          example: John Doe
+        organization:
           type: string
-          enum: [admin, user, viewer]
-          example: "user"
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    
-    CreateUserRequest:
+
+    DatabaseConnection:
       type: object
       required:
-        - email
-        - name
-        - password
+        - type
+        - host
+        - database
       properties:
-        email:
-          type: string
-          format: email
         name:
+          type: string
+          example: Production Database
+        type:
+          type: string
+          enum: [postgresql, mysql, mongodb, bigquery, snowflake]
+          example: postgresql
+        host:
+          type: string
+          example: db.example.com
+        port:
+          type: integer
+          example: 5432
+        database:
+          type: string
+          example: analytics
+        username:
           type: string
         password:
           type: string
           format: password
-        role:
-          type: string
-          enum: [admin, user, viewer]
-          default: user
-    
-    UpdateUserRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        role:
-          type: string
-          enum: [admin, user, viewer]
-    
+
     DataSource:
       type: object
       properties:
         id:
           type: string
-          example: "db_postgresql_1768796333"
-          description: "Unique identifier with prefix indicating database type and timestamp"
         name:
           type: string
-          example: "Production Database"
         type:
           type: string
-          enum: [postgresql, mysql, mongodb, bigquery, s3]
-          example: "postgresql"
-        config:
-          type: object
-          properties:
-            host:
-              type: string
-            port:
-              type: integer
-            database:
-              type: string
         status:
           type: string
           enum: [connected, disconnected, error]
-        createdAt:
+        created_at:
           type: string
           format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    
-    CreateDataSourceRequest:
-      type: object
-      required:
-        - name
-        - type
-        - config
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum: [postgresql, mysql, mongodb, bigquery, s3]
-        config:
-          type: object
-          properties:
-            host:
-              type: string
-            port:
-              type: integer
-            database:
-              type: string
-            username:
-              type: string
-            password:
-              type: string
-              format: password
-    
-    UpdateDataSourceRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        config:
-          type: object
+
+  responses:
+    UnauthorizedError:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                example: Not authenticated
+
+    BadRequestError:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+
+    ValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: array
+                items:
+                  type: object
 
   securitySchemes:
-    bearerAuth:
+    BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: JWT token obtained from /api/auth/users/signin
 
 security:
-  - bearerAuth: []
+  - BearerAuth: []

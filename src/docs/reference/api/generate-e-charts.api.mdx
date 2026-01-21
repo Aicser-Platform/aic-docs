@@ -1,0 +1,72 @@
+---
+id: generate-e-charts
+title: "Generate ECharts configuration"
+description: "Generate ECharts configuration"
+sidebar_label: "Generate ECharts configuration"
+hide_title: true
+hide_table_of_contents: true
+api: eJyFVk1vGzcQ/SvE5NIaG62S9LSnKo4dOChQI3aagywUI+5IYsIlmeGsHVXY/14MV5IVO2h9MJbkfDy+Gb7RDgTXGZo5zK7MLKDfirMZFhXERIziYrhqoYE1BV3SxfkGWTJUkMn27GQLzXwHbwmZeNbLBpr5YlhUwPStpyxvY7uFZleWjqmFRrinCmwMQkH0CFPyzpZU9Zccg+5lu6EO9Uu2iaCBuPxCVqCCxApMHGU9bVFOrZAZt1CBE+ryc+9hqMAq/r/H/eN5FnZhDRVQ6Dslw7tAUMESWVM6/c4WRUjXG0LpMMFiKH9615xiyCOk19NpQUbZskt6K2hgT5uxMazcuh+JLXh+tHu/p9n83KGCjmQTtSAp5kIHKuVQo6upXC3Xh1KVGvE9cS4l6tlDAxuRlJu6xpQm6GwmntjYwVMc1xzb3urCjDFgqE5DNHXto0W/iVmaN9Pp9FmEd3RPPqaOghxDLB675kYLPBJ22jvHimiSQrqaQQPLYqQlKR+XkTsUaODD59tnqT98vjUSv1IwcSnoArVmxbEzNSZXYy+bus/Euc5uHdxYBe27j48de/Edu+TpscPmOwV/2jtjiwwVuLCKBbgT9YBZYdVce5RV5M7Mrq+gAi3DiO7VZDp5TtfthsxPPE3ieO9ayvqxZuw6FGcNWks5G4kGvTfp4LAilJ4pV+N9Z1cvU3wgptYU5GbfGVpViUZJMB0GXFOpEobW6G0Nqgxklyfmbe+8mAcnG3OJWRSQWq2i9/HBhbX5eHFzaxK7YF3ymjj2XHC7bFpSgpX8yCYRK0QMlirD5B0unXeyrUpAwkwmrowLQusR4eQu3IUXL8x7EtFMN4Is1Oruq4k5O9N+oSB74Tg7a8yNWwfTpxJwLLzZHuBYplat0ee78Fr9z2MIZMW8Q0H1/pR8xNasnKdsIuvDK+cSCylLzJTvwpuSWvn5h4pXJjO7UqNvPfG25MbxeEyuvnfhN3X7y+UevRsdjw99fLTF0TLpTot5s4zIbd5T8FF3/3CdUyJ076U5O7tkIiOOWKO9mk7NXnBzvYk9jzbXHB9NqulTI2NGs4sgxIldLsjO+yyxM17zHRDc9ClFFl1dRjZ5XFaGOnT+sPz9UU+UwHuXnZR+mLfR9tpipVSLXw4a1EabT0To18mdKpxOBrRlMgTsTl7UHoSqtKZV2X6WGKqnOvd4NFTgnaWQ6ST2NcfEjgR5+x++tRB3uSiF6m6H4STE/2r2Dy/9qHBC36VOHlWB9pl3ezmfAzq9pj3M2qOkLypQyVWT3U578hP7YdDt0n86fCu4R3a4VDGaL4YyrlriMgO+0hYaOB9n78tbBaLmvi/D8+kcVsk7zpvrP29UaZf7ed7FVn0YH6Aq/xsA/c2g3kXVy94OPIZ1j2u1HWMqh/ij1j/R9oL0MNDD9gThbjda3Kq4DwNU+wsVsYdB5/G/bn8N/A==
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generate ECharts configuration"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/ai/echarts/generate"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Generate ECharts configuration
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"data":{"type":"array","items":{"type":"object"}},"chart_type":{"type":"string","enum":["line","bar","pie","scatter","heatmap"]}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"ECharts configuration"}}}
+>
+  
+</StatusCodes>
+
+
+      

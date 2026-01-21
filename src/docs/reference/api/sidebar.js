@@ -1,6 +1,6 @@
-import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 
-const sidebar: SidebarsConfig = {
+
+const sidebar = {
   apisidebar: [
     {
       type: "category",
@@ -485,4 +485,4 @@ const sidebar: SidebarsConfig = {
   ],
 };
 
-export default sidebar.apisidebar;
+module.exports = sidebar.apisidebar;
