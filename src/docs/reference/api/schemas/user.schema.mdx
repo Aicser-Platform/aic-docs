@@ -6,7 +6,7 @@ sidebar_label: "User"
 hide_title: true
 hide_table_of_contents: true
 schema: true
-sample: {"id":"550e8400-e29b-41d4-a716-446655440000","email":"user@example.com","name":"John Doe","role":"admin","created_at":"2024-01-15T10:30:00Z","updated_at":"2024-01-15T10:30:00Z","is_active":true}
+sample: {"id":"usr_123456","email":"user@example.com","name":"John Doe","role":"user","createdAt":"2024-07-29T15:51:28.071Z","updatedAt":"2024-07-29T15:51:28.071Z"}
 custom_edit_url: null
 ---
 
@@ -25,7 +25,7 @@ import Heading from "@theme/Heading";
 
 
 <Schema
-  schema={{"type":"object","properties":{"id":{"type":"string","format":"uuid","description":"User unique identifier","example":"550e8400-e29b-41d4-a716-446655440000"},"email":{"type":"string","format":"email","description":"User email address","example":"user@example.com"},"name":{"type":"string","description":"User full name","example":"John Doe"},"role":{"type":"string","enum":["admin","user","viewer"],"description":"User role","example":"admin"},"created_at":{"type":"string","format":"date-time","description":"Account creation timestamp","example":"2024-01-15T10:30:00Z"},"updated_at":{"type":"string","format":"date-time","description":"Last update timestamp","example":"2024-01-15T10:30:00Z"},"is_active":{"type":"boolean","description":"Account active status","example":true}},"title":"User"}}
+  schema={{"type":"object","properties":{"id":{"type":"string","example":"usr_123456"},"email":{"type":"string","format":"email","example":"user@example.com"},"name":{"type":"string","example":"John Doe"},"role":{"type":"string","enum":["admin","user","viewer"],"example":"user"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"title":"User"}}
   schemaType={"response"}
 >
   

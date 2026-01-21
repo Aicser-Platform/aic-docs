@@ -1,0 +1,72 @@
+---
+id: create-data-source
+title: "Create data source"
+description: "Connect a new data source"
+sidebar_label: "Create data source"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVk1v4zYQ/SvEnBXbaYDdVjfvZhdILw2SLHowjMVYGsvcUiQzpOIYhv97MaQcyYk3QNEC9cWS+GY4H28euYeITYByAdcYUd27jisKsCygplCx9lE7CyV8dtZSFRUqS1tVCzYkLBTgPDEK7qaGEiomjCTe7o8ApseOQvzk6h2U+/SqmWooI3dUQOVsJBtlCb03ukrOpj+C7LyHUG2oRXmKO09Qglv9oCr2frOjBVhsZasESS7XupE0PEt4UVMQDwk1eAqRtW3g0Nu9WSiAbNeKe+9CbJjCo4EC2l3/72zj6hUUsNLNY0e8gwLCFSwPLxGcifo0oo0L8WxE3vF4QdtIDbGsSPVXGM4n0gXin2bpMYSt4/pcpmvHLUYoB9DhcJDK6GgE+PlVX+9yU3sUU/DOhpzTL7NL+Ttl0PXAGZU5UqvQVRWFsO6M2cG/IMJpSfXZ/OgZW58yqVffh3Z+v/z44dePv324urqC16T/ZvVjR0rXZKNea2K11XGjPNNaPytt6xShbdSxI0o2VWhrFXVLIWLrpezn+zEO6ZZd3VWyrbo+dvc/Z+V4w5Hl/0ZW4U2IGLvwXo5VVh6qpT06jF+J2XGetkyo+ZnoRsyuMdKFdCYNiq//mcloFkbqdsj8byluXN0XVuqGcQMlTCX9aehVtYBA/EQseruHjg2UsInRh3I6Ra8nqKtAPKlcK69v6DgiSfYDh2LsppxOjavQSJfKq9lsdtbLNT2Rcb4lG1/cLCWyqmMddym0FSETzzvJYbEcL9/LDGYyjEEvFZQ4JM8Eg7IHCRfTw9djXX//8yFVVGb7bjgevhwJepTqoSX9BieUH3ibmTmgMyFnY/4Ni4NGjgxepHHgZwHarl3Krm/8PHVI3RqMQhE1v72BAqSlubiXk9lk9qbkDxtSZyyVZ/ekawry0DC2LUZdKUyaqKJTaIzyR4M1YeyYQqHW7Fo1v7nwbktMtao2yFE1ZPtjWEwlRdWixYZSp0WT0qmNFs0u6DBRnzptYla0rxiiBCSotTPGbUXV7r7cPyjP2lbaG9nYdZzi1kHVFHRjSeCsPHEaGFtRoZiMxpU2Ou6K5JBEGN1aJVHIEU6yZoTYoh31Oh8xr24XJ6XcD2fEu1eSniyRnuPUG9Q2TbxMyr4fzUVihlB1uPJkEi1gvxfGfGNzOMjnrKHlYlnAE7LGlVBhIbKzIayJ08j8Rbsck0R38ZCvIU9oOonjzWkmg5st5lVFPr6LXY7k5faP+weZpv4q1bpabBi3ch3CLZSQLmRinYY0fduDQdt02Ag2+5Tf31XGdXM=
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create data source"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/data/sources"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Connect a new data source
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["name","type","config"],"properties":{"name":{"type":"string"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","s3"]},"config":{"type":"object","properties":{"host":{"type":"string"},"port":{"type":"integer"},"database":{"type":"string"},"username":{"type":"string"},"password":{"type":"string","format":"password"}}}},"title":"CreateDataSourceRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Data source created successfully","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"db_postgresql_1768796333","description":"Unique identifier with prefix indicating database type and timestamp"},"name":{"type":"string","example":"Production Database"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","s3"],"example":"postgresql"},"config":{"type":"object","properties":{"host":{"type":"string"},"port":{"type":"integer"},"database":{"type":"string"}}},"status":{"type":"string","enum":["connected","disconnected","error"]},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"title":"DataSource"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

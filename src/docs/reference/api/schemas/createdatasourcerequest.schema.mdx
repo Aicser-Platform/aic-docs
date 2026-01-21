@@ -1,0 +1,33 @@
+---
+id: createdatasourcerequest
+title: "CreateDataSourceRequest"
+description: ""
+sidebar_label: "CreateDataSourceRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"name":"string","type":"postgresql","config":{"host":"string","port":0,"database":"string","username":"string","password":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CreateDataSourceRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","required":["name","type","config"],"properties":{"name":{"type":"string"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","s3"]},"config":{"type":"object","properties":{"host":{"type":"string"},"port":{"type":"integer"},"database":{"type":"string"},"username":{"type":"string"},"password":{"type":"string","format":"password"}}}},"title":"CreateDataSourceRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

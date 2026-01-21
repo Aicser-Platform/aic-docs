@@ -8,34 +8,6 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Authentication",
-      link: {
-        type: "doc",
-        id: "reference/api/authentication",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "reference/api/login",
-          label: "User login",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "reference/api/refresh-token",
-          label: "Refresh access token",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "reference/api/logout",
-          label: "User logout",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
       label: "Users",
       link: {
         type: "doc",
@@ -76,32 +48,46 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Analytics",
+      label: "Data Sources",
       link: {
         type: "doc",
-        id: "reference/api/analytics",
+        id: "reference/api/data-sources",
       },
       items: [
         {
           type: "doc",
-          id: "reference/api/generate-chart",
-          label: "Generate analytics chart",
+          id: "reference/api/list-data-sources",
+          label: "List all data sources",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "reference/api/create-data-source",
+          label: "Create data source",
           className: "api-method post",
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "AI Analysis",
-      link: {
-        type: "doc",
-        id: "reference/api/ai-analysis",
-      },
-      items: [
         {
           type: "doc",
-          id: "reference/api/ai-analyze",
-          label: "AI data analysis",
+          id: "reference/api/get-data-source-by-id",
+          label: "Get data source by ID",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "reference/api/update-data-source",
+          label: "Update data source",
+          className: "api-method put",
+        },
+        {
+          type: "doc",
+          id: "reference/api/delete-data-source",
+          label: "Delete data source",
+          className: "api-method delete",
+        },
+        {
+          type: "doc",
+          id: "reference/api/test-data-source",
+          label: "Test data source connection",
           className: "api-method post",
         },
       ],
@@ -110,24 +96,6 @@ const sidebar: SidebarsConfig = {
       type: "category",
       label: "Schemas",
       items: [
-        {
-          type: "doc",
-          id: "reference/api/schemas/loginrequest",
-          label: "LoginRequest",
-          className: "schema",
-        },
-        {
-          type: "doc",
-          id: "reference/api/schemas/refreshtokenrequest",
-          label: "RefreshTokenRequest",
-          className: "schema",
-        },
-        {
-          type: "doc",
-          id: "reference/api/schemas/tokenresponse",
-          label: "TokenResponse",
-          className: "schema",
-        },
         {
           type: "doc",
           id: "reference/api/schemas/user",
@@ -148,38 +116,20 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "reference/api/schemas/userlistresponse",
-          label: "UserListResponse",
+          id: "reference/api/schemas/datasource",
+          label: "DataSource",
           className: "schema",
         },
         {
           type: "doc",
-          id: "reference/api/schemas/chartgenerationrequest",
-          label: "ChartGenerationRequest",
+          id: "reference/api/schemas/createdatasourcerequest",
+          label: "CreateDataSourceRequest",
           className: "schema",
         },
         {
           type: "doc",
-          id: "reference/api/schemas/chartresponse",
-          label: "ChartResponse",
-          className: "schema",
-        },
-        {
-          type: "doc",
-          id: "reference/api/schemas/aianalysisrequest",
-          label: "AIAnalysisRequest",
-          className: "schema",
-        },
-        {
-          type: "doc",
-          id: "reference/api/schemas/aianalysisresponse",
-          label: "AIAnalysisResponse",
-          className: "schema",
-        },
-        {
-          type: "doc",
-          id: "reference/api/schemas/error",
-          label: "Error",
+          id: "reference/api/schemas/updatedatasourcerequest",
+          label: "UpdateDataSourceRequest",
           className: "schema",
         },
         {

@@ -1,0 +1,72 @@
+---
+id: get-data-source-by-id
+title: "Get data source by ID"
+description: "Retrieve a specific data source by its ID"
+sidebar_label: "Get data source by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVU1vGzcQ/SvEnBKAkZQaSJq9KXASuCfDTtCDIAQUObvLlEvS5KxsQdj/Xgx3ZcuWmiJFT/vB+XjzOPNmD6SaDNUKLhUpcRv6pDHDWoLBrJONZIOHCm6QksUtCiVyRG1rq4Vhj1w8xGYnLGVxdQkSQsSk2O/KQAUNEoceI3/cXRmQEFVSHRImzrwHrzqECsyjWTGynDcqakFCwrveJjRQUerxJbivLYre27sehTXoydYWkwi1oBafoXyFs2Ymhdl8jyFTkzDfue9v37/7/f2HdxcXF69BQtYtdgqqPdAuMqpMyfoGJOCD6qIrQP/BH4ZhzVhzDD5j5iC/LRb8eI73ttcac657Jw7GIEEHT+iJzVWMzurC4fxHZp/9KbCw+YGamM3EjJMdM1rzH8G/ZPXbCaP3lloRE9b2QVhvCkLfFIY3KqPgpEJ5I8h2mEl1EQY53e7PIF2nYHrNacXlFIsdR4czjr7vuGOfygAJ3W56Bt8EswEJG9vc9Zh2fKkX3NFPCY88h0J8bZt/Z7YNmU7xDBJiSMcH1hM2mPjkQM0Zt2GQkElRn39Wow7eoybkgTA2H39iSiHBmgtIqAjN8gw6CXVInaJxvPAN3wwD66P5NRe+D0uFvadx5ir4pENqwzTsZbyphQrmXP18HL083x+P98CXgml7UIA+OaigJYq5ms9VtDNldcY006Hjz5PmPGqZMQ4M8jhMNZ+7oJXjO6suFovF2SiXuEUXYoeeHsOsGZnuk6VdgbZBlTAtey5ptT4+vuWJHFvj2OiRT8ZxUBT+Ho24M8vL5wPLf/z5tfBrfR2K+8TzslAgrp0ivhGxvL4CCczZiP7tbDFbnNTEYnjGU8QUttZg5pcmqa5TZLVQRYkEBaGcE/HgUKOiPmGWok6hE8urNzHcY0IjdKsSiQb9pPHs2nOyTnnVYKGSJaDIrvLK7bLNM/Gxt45GAfmsMjEgtqqDc+GeReTm0+1XEZP12kbHiUOfCm6bhcFsG49snkTEVPrTa5QiobNqY52lnSwBkXUo1KLM4IhwNo5opk4VIZ22zReklxusbK9nbO6fVPmXVuDUAYQPNI9OWV9mjrtzP03HqmgDt8e0ciVUzxbgWk6Cs4L9njXkW3LDwL9HVatWawlblazacLes9qwP/G6gqpXLL7fkcSmvbqZ9+lr8n7vzbNXTT+VZiLfK9fwFEv7C3cudP7CYtagMplLQaLLUGiMdOZ9sRx7KRwn68omn6W8xAQwf
+sidebar_class_name: "get api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get data source by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/data/sources/{dataSourceId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve a specific data source by its ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"dataSourceId","in":"path","required":true,"description":"The unique identifier of the data source (e.g., db_postgresql_1768796333)","schema":{"type":"string","example":"db_postgresql_1768796333"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful response","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"db_postgresql_1768796333","description":"Unique identifier with prefix indicating database type and timestamp"},"name":{"type":"string","example":"Production Database"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","s3"],"example":"postgresql"},"config":{"type":"object","properties":{"host":{"type":"string"},"port":{"type":"integer"},"database":{"type":"string"}}},"status":{"type":"string","enum":["connected","disconnected","error"]},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"title":"DataSource"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -17,7 +17,11 @@ RUN npm install
 # They are mounted as volumes in docker-compose for hot reload
 
 # Expose port
-EXPOSE 3005
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:3000/ || exit 1
 
 # Start development server with hot reload
 # Source files will be available via volume mounts

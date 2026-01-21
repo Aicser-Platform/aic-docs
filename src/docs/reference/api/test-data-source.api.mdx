@@ -1,0 +1,72 @@
+---
+id: test-data-source
+title: "Test data source connection"
+description: "Test the connection to a data source"
+sidebar_label: "Test data source connection"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVMGO2zYQ/RViTgnAWk4XSFrd3KYBtpcu4i1yWBjBmBpLTCmSS452Ywj692Io70a1N0AO9cUUOTN88/jmjcDYZqjv4D0yqm0YkqEMOw0NZZNsZBs81HBLmRV3pEzwnozsKg4KVSNpuaSBhhApoRxeN1ADU2Ypu306jpiwJ6YkN47gsSeooXkOuW5Ag5X7InIHGhLdDzZRAzWngS5AdaQGb+8HUrYhz/ZgKalwKEAXwNQrWrUrrZr95xgyt4nyvfv85t3bX979+vbq6uo1aMimox6hHoGPUVBlTta3oIG+Yh9dAfqdfJimnWDNMfhMWYr8vF7L33/x/r7gTvjMgzGU82FwoMEEz+RZsjBGZ03hsfqSJXW8xBf2X8iwkJqEdbbzxaeai8B9CI7Qw6Shp5yxpcsup/knEdwFeTtptLwYd1BDJWxWM5u5GpcvNlXSizBI6eHpZYfkoIaOOea6qjDaFVqTKa1M6OUTzp/yJoVmmKmZ68Ckl2XqqnLBoOtC5vpqvV6/WOU9PZALsSfPz2V2gswMyfKxQNsTJkqbQfq62y2Pt0LxzOIy6JkrwfGklEJsCQJ9WnwIqUeGGv78dAvCpfWHUNItF/lsCgXqxiEfQurV5uYaNAhnM/o3q/VqfdGTiPyFTBVTeLANZVm0Cfse2RqF5fXLaDqn4lPCgZCHRFmrQwq92lz/FMMjJWqU6TCxasmfBldSB7msR48tFSrRN/M4oUd3zDav1G+DdaweLXfqA2YWQBJ1CM6FR+tb9fGP7a2KyXpjo5OLw5AKbptVQ9m2niQ8qUhJIKI3pFUiZ3FvneWjLgUJM8lEW8/UzghXomSRZ49lMk4uUhxqOfTfnOqc0/HbsP2osZ0kwPSVq+jQlnEq8hxPM3JXfEz0cfJQDfWZs5VB2WkQEUvCOO4x09/JTZNs3w+URKM7DQ+YLO5FNXcjNDbLuoH6gC6fu+CymVcfT375Wv2f3vhi86dN9EcRMbpBvkDDP3Q89/RpN2noCBtKpaE5ZGMMRV4kX9ieDOezId38tZWx+hcVGVD8
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Test data source connection"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/data/sources/{dataSourceId}/test"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Test the connection to a data source
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"dataSourceId","in":"path","required":true,"description":"The unique identifier of the data source (e.g., db_postgresql_1768796333)","schema":{"type":"string","example":"db_postgresql_1768796333"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Connection test successful","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean"},"message":{"type":"string"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

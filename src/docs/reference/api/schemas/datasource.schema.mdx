@@ -1,0 +1,33 @@
+---
+id: datasource
+title: "DataSource"
+description: ""
+sidebar_label: "DataSource"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"id":"db_postgresql_1768796333","name":"Production Database","type":"postgresql","config":{"host":"string","port":0,"database":"string"},"status":"connected","createdAt":"2024-07-29T15:51:28.071Z","updatedAt":"2024-07-29T15:51:28.071Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"DataSource"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"id":{"type":"string","example":"db_postgresql_1768796333","description":"Unique identifier with prefix indicating database type and timestamp"},"name":{"type":"string","example":"Production Database"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","s3"],"example":"postgresql"},"config":{"type":"object","properties":{"host":{"type":"string"},"port":{"type":"integer"},"database":{"type":"string"}}},"status":{"type":"string","enum":["connected","disconnected","error"]},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"title":"DataSource"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

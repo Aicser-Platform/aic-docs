@@ -1,992 +1,414 @@
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "Aicser Platform API",
-    "version": "1.0.0",
-    "description": "AI-Powered Analytics Platform API for customer service and business intelligence",
-    "contact": {
-      "name": "Aicser Support",
-      "url": "https://aicser.com",
-      "email": "support@aicser.com"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/licenses/MIT"
-    }
-  },
-  "servers": [
-    {
-      "url": "https://api.aicser.com/v1",
-      "description": "Production server"
-    },
-    {
-      "url": "http://localhost:8000",
-      "description": "Development server"
-    }
-  ],
-  "x-tagGroup": [
-    {
-      "name": "Authentication",
-      "tags": ["Authentication"]
-    },
-    {
-      "name": "User Management", 
-      "tags": ["Users"]
-    },
-    {
-      "name": "Analytics",
-      "tags": ["Analytics"]
-    },
-    {
-      "name": "AI Analysis",
-      "tags": ["AI Analysis"]
-    }
-  ],
-  "tags": [
-    {
-      "name": "Authentication",
-      "description": "User authentication and authorization operations - login, refresh token, and logout"
-    },
-    {
-      "name": "Users",
-      "description": "User management operations (CRUD)"
-    },
-    {
-      "name": "Analytics",
-      "description": "Data analytics and visualization endpoints"
-    },
-    {
-      "name": "AI Analysis",
-      "description": "AI-powered data analysis and insights"
-    }
-  ],
-  "paths": {
-    "/auth/login": {
-      "post": {
-        "tags": ["Authentication"],
-        "summary": "User login",
-        "description": "Authenticate user and obtain access and refresh tokens",
-        "operationId": "login",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              },
-              "examples": {
-                "emailLogin": {
-                  "summary": "Login with email",
-                  "value": {
-                    "email": "user@example.com",
-                    "password": "SecurePassword123!"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Login successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenResponse"
-                },
-                "examples": {
-                  "success": {
-                    "summary": "Successful login",
-                    "value": {
-                      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-                      "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-                      "token_type": "bearer",
-                      "expires_in": 3600,
-                      "user": {
-                        "id": "550e8400-e29b-41d4-a716-446655440000",
-                        "email": "user@example.com",
-                        "name": "John Doe",
-                        "role": "admin"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid credentials",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth/refresh": {
-      "post": {
-        "tags": ["Authentication"],
-        "summary": "Refresh access token",
-        "description": "Obtain a new access token using a valid refresh token",
-        "operationId": "refreshToken",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshTokenRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Token refreshed successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid or expired refresh token",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/auth/logout": {
-      "post": {
-        "tags": ["Authentication"],
-        "summary": "User logout",
-        "description": "Invalidate the current access and refresh tokens",
-        "operationId": "logout",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Logout successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Successfully logged out"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users": {
-      "get": {
-        "tags": ["Users"],
-        "summary": "List all users",
-        "description": "Retrieve a paginated list of all users",
-        "operationId": "listUsers",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page number",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "default": 1
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of items per page",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": 20
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "description": "Search by name or email",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "role",
-            "in": "query",
-            "description": "Filter by user role",
-            "schema": {
-              "type": "string",
-              "enum": ["admin", "user", "viewer"]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Users retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserListResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "403": {
-            "$ref": "#/components/responses/ForbiddenError"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Users"],
-        "summary": "Create a new user",
-        "description": "Create a new user account",
-        "operationId": "createUser",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "User created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequestError"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "403": {
-            "$ref": "#/components/responses/ForbiddenError"
-          },
-          "422": {
-            "description": "Validation error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/{user_id}": {
-      "get": {
-        "tags": ["Users"],
-        "summary": "Get user by ID",
-        "description": "Retrieve detailed information about a specific user",
-        "operationId": "getUserById",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/UserIdPath"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Users"],
-        "summary": "Update user",
-        "description": "Update user information",
-        "operationId": "updateUser",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/UserIdPath"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateUserRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "User updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequestError"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "403": {
-            "$ref": "#/components/responses/ForbiddenError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          },
-          "422": {
-            "description": "Validation error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Users"],
-        "summary": "Delete user",
-        "description": "Delete a user account",
-        "operationId": "deleteUser",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/UserIdPath"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "User deleted successfully"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "403": {
-            "$ref": "#/components/responses/ForbiddenError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        }
-      }
-    },
-    "/analytics/generate-chart": {
-      "post": {
-        "tags": ["Analytics"],
-        "summary": "Generate analytics chart",
-        "description": "Generate a chart visualization from analytics data",
-        "operationId": "generateChart",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChartGenerationRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Chart generated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ChartResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      }
-    },
-     "/charts/": {
-      "get": {
-        "tags": [
-          "charts"
-        ],
-        "summary": "Get All",
-        "operationId": "get_all_charts__get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {  
-              "application/json": {
-                "schema": {
+openapi: 3.0.0
+info:
+  title: Aicser Platform API
+  version: 1.0.0
+  description: The Aicser Platform API provides programmatic access to all platform features, from AI-powered chart generation to user management and data analysis. Built with FastAPI and following REST principles, our API is designed for performance, reliability, and ease of integration.
 
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "charts"
-        ],
-        "summary": "Create",
-        "operationId": "create_charts__post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChartConfiguration"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
+servers:
+  - url: https://api.aicser.com/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Development server
 
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ai/analyze": {
-      "post": {
-        "tags": ["AI Analysis"],
-        "summary": "AI data analysis",
-        "description": "Perform AI-powered analysis on provided data",
-        "operationId": "aiAnalyze",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AIAnalysisRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Analysis completed successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AIAnalysisResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "description": "JWT access token obtained from login endpoint"
-      }
-    },
-    "parameters": {
-      "UserIdPath": {
-        "name": "user_id",
-        "in": "path",
-        "required": true,
-        "description": "User ID (UUID)",
-        "schema": {
-          "type": "string",
-          "format": "uuid",
-          "example": "550e8400-e29b-41d4-a716-446655440000"
-        }
-      }
-    },
-    "responses": {
-      "UnauthorizedError": {
-        "description": "Authentication required or token invalid",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            },
-            "example": {
-              "error": "Unauthorized",
-              "message": "Invalid or expired token"
-            }
-          }
-        }
-      },
-      "ForbiddenError": {
-        "description": "Insufficient permissions",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            },
-            "example": {
-              "error": "Forbidden",
-              "message": "You don't have permission to perform this action"
-            }
-          }
-        }
-      },
-      "NotFoundError": {
-        "description": "Resource not found",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            },
-            "example": {
-              "error": "Not Found",
-              "message": "User not found"
-            }
-          }
-        }
-      },
-      "BadRequestError": {
-        "description": "Bad request",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      }
-    },
-    "schemas": {
-      "LoginRequest": {
-        "type": "object",
-        "required": ["email", "password"],
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "User email address",
-            "example": "user@example.com"
-          },
-          "password": {
-            "type": "string",
-            "format": "password",
-            "minLength": 8,
-            "description": "User password",
-            "example": "SecurePassword123!"
-          }
-        }
-      },
-      "RefreshTokenRequest": {
-        "type": "object",
-        "required": ["refresh_token"],
-        "properties": {
-          "refresh_token": {
-            "type": "string",
-            "description": "Valid refresh token",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-          }
-        }
-      },
-      "TokenResponse": {
-        "type": "object",
-        "properties": {
-          "access_token": {
-            "type": "string",
-            "description": "JWT access token",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-          },
-          "refresh_token": {
-            "type": "string",
-            "description": "JWT refresh token",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-          },
-          "token_type": {
-            "type": "string",
-            "description": "Token type",
-            "example": "bearer"
-          },
-          "expires_in": {
-            "type": "integer",
-            "description": "Token expiration time in seconds",
-            "example": 3600
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        }
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "User unique identifier",
-            "example": "550e8400-e29b-41d4-a716-446655440000"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "User email address",
-            "example": "user@example.com"
-          },
-          "name": {
-            "type": "string",
-            "description": "User full name",
-            "example": "John Doe"
-          },
-          "role": {
-            "type": "string",
-            "enum": ["admin", "user", "viewer"],
-            "description": "User role",
-            "example": "admin"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Account creation timestamp",
-            "example": "2024-01-15T10:30:00Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Last update timestamp",
-            "example": "2024-01-15T10:30:00Z"
-          },
-          "is_active": {
-            "type": "boolean",
-            "description": "Account active status",
-            "example": true
-          }
-        }
-      },
-      "CreateUserRequest": {
-        "type": "object",
-        "required": ["email", "name", "password"],
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "User email address",
-            "example": "newuser@example.com"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 100,
-            "description": "User full name",
-            "example": "Jane Smith"
-          },
-          "password": {
-            "type": "string",
-            "format": "password",
-            "minLength": 8,
-            "description": "User password (min 8 characters)",
-            "example": "SecurePassword123!"
-          },
-          "role": {
-            "type": "string",
-            "enum": ["admin", "user", "viewer"],
-            "default": "user",
-            "description": "User role",
-            "example": "user"
-          }
-        }
-      },
-      "UpdateUserRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 100,
-            "description": "User full name",
-            "example": "Jane Smith Updated"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "User email address",
-            "example": "updated@example.com"
-          },
-          "role": {
-            "type": "string",
-            "enum": ["admin", "user", "viewer"],
-            "description": "User role",
-            "example": "admin"
-          },
-          "is_active": {
-            "type": "boolean",
-            "description": "Account active status",
-            "example": true
-          }
-        }
-      },
-      "UserListResponse": {
-        "type": "object",
-        "properties": {
-          "users": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            }
-          },
-          "total": {
-            "type": "integer",
-            "description": "Total number of users",
-            "example": 50
-          },
-          "page": {
-            "type": "integer",
-            "description": "Current page number",
-            "example": 1
-          },
-          "limit": {
-            "type": "integer",
-            "description": "Items per page",
-            "example": 20
-          }
-        }
-      },
-      "ChartGenerationRequest": {
-        "type": "object",
-        "required": ["chart_type", "data"],
-        "properties": {
-          "chart_type": {
-            "type": "string",
-            "enum": ["bar", "line", "pie", "scatter"],
-            "description": "Type of chart to generate"
-          },
-          "data": {
-            "type": "object",
-            "description": "Data to visualize"
-          }
-        }
-      },
-      "ChartResponse": {
-        "type": "object",
-        "properties": {
-          "chart_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "chart_url": {
-            "type": "string",
-            "format": "uri"
-          },
-          "chart_data": {
-            "type": "object"
-          }
-        }
-      },
-      "AIAnalysisRequest": {
-        "type": "object",
-        "required": ["data", "analysis_type"],
-        "properties": {
-          "data": {
-            "type": "object",
-            "description": "Data to analyze"
-          },
-          "analysis_type": {
-            "type": "string",
-            "enum": ["sentiment", "classification", "prediction"],
-            "description": "Type of analysis"
-          }
-        }
-      },
-      "AIAnalysisResponse": {
-        "type": "object",
-        "properties": {
-          "analysis_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "results": {
-            "type": "object"
-          },
-          "insights": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "confidence": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 1
-          }
-        }
-      },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "description": "Error type",
-            "example": "Unauthorized"
-          },
-          "message": {
-            "type": "string",
-            "description": "Error message",
-            "example": "Invalid credentials"
-          }
-        }
-      },
-      "ValidationError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "example": "Validation Error"
-          },
-          "details": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "field": {
-                  "type": "string",
-                  "example": "email"
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Invalid email format"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+tags:
+  - name: Users
+    description: User management and authentication
+  - name: Data Sources
+    description: Connect and manage data sources
+
+paths:
+  # Users Endpoints
+  /users:
+    get:
+      tags:
+        - Users
+      summary: List all users
+      description: Retrieve a list of all users in the system
+      operationId: listUsers
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+    
+    post:
+      tags:
+        - Users
+      summary: Create a new user
+      description: Create a new user account
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /users/{userId}:
+    get:
+      tags:
+        - Users
+      summary: Get user by ID
+      description: Retrieve a specific user by their ID
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    
+    put:
+      tags:
+        - Users
+      summary: Update user
+      description: Update an existing user's information
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    
+    delete:
+      tags:
+        - Users
+      summary: Delete user
+      description: Delete a user from the system
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          description: User not found
+
+  # Data Sources Endpoints
+  /data/sources:
+    get:
+      tags:
+        - Data Sources
+      summary: List all data sources
+      description: Retrieve a list of all connected data sources
+      operationId: listDataSources
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataSources:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DataSource'
+    
+    post:
+      tags:
+        - Data Sources
+      summary: Create data source
+      description: Connect a new data source
+      operationId: createDataSource
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataSourceRequest'
+      responses:
+        '201':
+          description: Data source created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+
+  /data/sources/{dataSourceId}:
+    get:
+      tags:
+        - Data Sources
+      summary: Get data source by ID
+      description: Retrieve a specific data source by its ID
+      operationId: getDataSourceById
+      parameters:
+        - name: dataSourceId
+          in: path
+          required: true
+          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
+          schema:
+            type: string
+            example: db_postgresql_1768796333
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+    
+    put:
+      tags:
+        - Data Sources
+      summary: Update data source
+      description: Update an existing data source configuration
+      operationId: updateDataSource
+      parameters:
+        - name: dataSourceId
+          in: path
+          required: true
+          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
+          schema:
+            type: string
+            example: db_postgresql_1768796333
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceRequest'
+      responses:
+        '200':
+          description: Data source updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+    
+    delete:
+      tags:
+        - Data Sources
+      summary: Delete data source
+      description: Remove a data source connection
+      operationId: deleteDataSource
+      parameters:
+        - name: dataSourceId
+          in: path
+          required: true
+          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
+          schema:
+            type: string
+            example: db_postgresql_1768796333
+      responses:
+        '204':
+          description: Data source deleted successfully
+
+  /data/sources/{dataSourceId}/test:
+    post:
+      tags:
+        - Data Sources
+      summary: Test data source connection
+      description: Test the connection to a data source
+      operationId: testDataSource
+      parameters:
+        - name: dataSourceId
+          in: path
+          required: true
+          description: The unique identifier of the data source (e.g., db_postgresql_1768796333)
+          schema:
+            type: string
+            example: db_postgresql_1768796333
+      responses:
+        '200':
+          description: Connection test successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "usr_123456"
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        name:
+          type: string
+          example: "John Doe"
+        role:
+          type: string
+          enum: [admin, user, viewer]
+          example: "user"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    
+    CreateUserRequest:
+      type: object
+      required:
+        - email
+        - name
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        password:
+          type: string
+          format: password
+        role:
+          type: string
+          enum: [admin, user, viewer]
+          default: user
+    
+    UpdateUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum: [admin, user, viewer]
+    
+    DataSource:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "db_postgresql_1768796333"
+          description: "Unique identifier with prefix indicating database type and timestamp"
+        name:
+          type: string
+          example: "Production Database"
+        type:
+          type: string
+          enum: [postgresql, mysql, mongodb, bigquery, s3]
+          example: "postgresql"
+        config:
+          type: object
+          properties:
+            host:
+              type: string
+            port:
+              type: integer
+            database:
+              type: string
+        status:
+          type: string
+          enum: [connected, disconnected, error]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    
+    CreateDataSourceRequest:
+      type: object
+      required:
+        - name
+        - type
+        - config
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [postgresql, mysql, mongodb, bigquery, s3]
+        config:
+          type: object
+          properties:
+            host:
+              type: string
+            port:
+              type: integer
+            database:
+              type: string
+            username:
+              type: string
+            password:
+              type: string
+              format: password
+    
+    UpdateDataSourceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        config:
+          type: object
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
