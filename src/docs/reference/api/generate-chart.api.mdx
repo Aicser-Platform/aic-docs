@@ -1,0 +1,72 @@
+---
+id: generate-chart
+title: "Generate chart from data"
+description: "Generate chart from data"
+sidebar_label: "Generate chart from data"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9Vktv2zgQ/ivE9LIbKJbT7kmnTdKkSLHABkm6PThGMJbGNluKZIejpK6h/74YSk6cB5pDIM6b3wy/8RYEVwmqGZyukSXBvIAQiVFs8BcNVLAir0fKeiggUd2xlQ1Usy2cEDLxcSdrqGbzfl4A04+OkpyEZgPVNh8tUwOVcEcF1MELeVEVxuhsnROV31LwKkv1mlrUL9lEggrC4hvVmjayliWWkmobFLxLoeOa7myzZ5+ErV9BX8CPjnjzpqbWm9wN4lfq/KfXSDH4NGR7Pz3KSSnVbKMWDNWAl9mh04B6Pbf4NOpMTmiWHFqjhUMBLck6KLoxpHw7VAShzJap3EXNcPM9ccpod+yggrVITFVZYowTtHUintShhZfZLzk0Xa0HM8SAvtgPUZWlCzW6dUhSfZhOp68ifKR7ciG25OUxxPxpAK61VwNA+2PwiKgm0QtkM6hgkY2gGD/OA7coUMHnrzevUn/+emMkfCdvwkLQemoG+EqMtsRO1mWXiFOZ7Mpbn7HXEbp6Gr6zn9hGR28Ny67XjzPyJNgfjb2JsX4Z8s2saEg4zrCbS4eyDNya48sLKED7NJR/NJlOXuN5sybzhqeJHO5tQ0k/Voxti2Jrg3VNKRkJBp0zceewJJSOKRUDIMcXhzE8EFMzTtk4Otp2CUZRMi16XFFuI/omj6BBj26TbJqYk846MQ9W1uYck2hBarUMzoUH61fm6uz6xkS2vrbRaeLQca7bJtOQdkC7E9hEYi0RfU2FYXIWF9ZZ2RQ5IGEiE5bGeqHVUOHk1t/6d+/MJxLRTNeCLNSo9GhiDg50oMjLSBIHB5W5titvupgDDpNhNrtyaqZGrdGlW/9e/U+D91SL+YiC6v0luoCNWVpHyQQ29aiXkEFZYKJ06z/k1IrPL8peiczxhRrlccm5cVAPydX31v+lbv/Z1KGzg+Pz95+yY82kkgbTehGQmzRCcKXSf2xrFQiVHZqDg3MmMmKJNdrRdGpGck3lOnQ82FxyeDIppi+NjBnMzrwQR7YpV3baJQmtcZpvV8F1F2Ng0dN5YJOGY2GoRet2x7+fCEcBvLfJSp6HWRPqTkcst2r+x46kmlCnPZb6c3LrYdgCWOct4LHde1FjEVBATquP8FViKF4S4ZOqL8DZmnyivdiXHCJbEuTNb3xLIW5TphIl5Rb9XojfUPmzN/5IfkI/pYwOlZzGnNuR5WcDyyQoHnerbl3lYVVutzqHX9j1vYpHiprNC7hHtrhQAprN+wLWhA1xXgzfSVnsdNithzdagpq7Tkt5tWeVxB8X0OW/10q/i3Fft6FRH8YHKPL/CkB/Eah3pvos24JDv+pwpbZDTMUNny+AF4SfKx1V6Dd7FW63g8WNMn7fQzFeKG8A6Od93/8PBl8CQw==
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generate chart from data"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/charts/generate"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Generate chart from data
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"data_source_id":{"type":"string"},"query":{"type":"string"},"chart_type":{"type":"string"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Chart generated"}}}
+>
+  
+</StatusCodes>
+
+
+      

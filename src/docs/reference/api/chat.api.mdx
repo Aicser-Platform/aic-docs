@@ -1,0 +1,72 @@
+---
+id: chat
+title: "Main chat endpoint"
+description: "Handles all AI chat scenarios"
+sidebar_label: "Main chat endpoint"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVktz2zYQ/isY5NJ6GFF5nHiqnMSpM+3UjZzmIGs8K3AlIgEBZLG0o2r43zsLUpZipemhuogA9r0fvsVOM2ySrhZ6dqlmHtyWrUl6WegakyEb2QavK/0r+NphUuCcml0q0wCrZNAD2ZB0oUNEApG9rHWl5VgXOqHpyPJWV4udPkcgpFnHja4Wy35ZaMIvHSY+D/VWV7u8tIS1rpg6LLQJntGzHEGMzppsv/yUJKCdTqbBFuSLtxF1pcPqExpxezC00C2mBBuUhCJJkGwxidL+4KCfmKzf6ELjV2ijk615E+5ViyqB5M6Evk5qHUj9+VL3ha6B4TaFjgze2vrUVJ+TuENKOfTvy+SfBJ1i8GkI7vl0Kn/ftuCV1Hwvpv9Hfb4txIPF74bfAPGpjb7Q6Yu7/dIhbf8tpb7QLXITBA8xpOwYpPm6FHik8gEkJBXKGOnI6Uo3zDFVZQkxTsCahDQxodWPIXlFoe6MLNRgQ/fFsYmqLF0w4JqQuHoxnU5PLLzGO3Qhtuj5wcTyANu5VHAo0jF4H9IVJ5JAFtOVXmUhXYwfF4FaYF3pdx+vT1y/+3itOHxGr8KKwXqs1ZpCq0qItoSOm7JLSKlMduOt11JNaez7w5V5s0fpEZZ/CNhTvB4gfwLTIwxYvw45a8v5UsxyS9SVA14HatXs6lIXWtSH1J5NppPTWl83qL6jqSKFO1tjko8NQdsCW6PAGExJcciEE/cKawTuCFMxFGt2+TSGeySsVQaq2qAfaUhUpYKqBQ8bzC0GXyspgQLhuWTTRJ131rG6t9yoC0gsAYnUOjgX7q3fqPdv5tcqkvXGRieOQ0c5bptUjdId6VwgFZEkRPAGC0XoLKyss7wtskGEhCqslfWMmyHCyY2/8U+eqLfILJ7mDMRYy+6ziTo7E7Ch5/Fan51Vam43XnUxGxxQo7b7cAxhLdLg0o1/LvqvgvdoWL0GBtH+EF2AWq2tICOQMuM5h1yUFSRMN/5Fdi31+RuzVkLhew4qX/bsG4bjwbno3viXovaXTR04Oyi+HVqBQ2dSVjSEslNDalYBqE5jCd7L7m+2tVII2Xuqzs4uCFGxRRJrz6ZTNY6LVDaho0HmisJBpJg+FlJqEHvjGSmSTTmyV13i0Con/vYRzLsYA7GsLgKpNCwLhS1Yt1/+ciAjKeCdTZYzHhZ1MJ1ALLdq+dOewOpg0hGD/Ty58SNvg8ms6qE9ulFjEDKBxK1cwhPHunhMkoejvtDOGhy5fLR9RSGSRQba/kC3ZKQ2ZZoRrm7BH5n4XZCWJz76Ogbr+fHt3h2G0X++FEbyZPzKZXQg5DbGtRsHxCK/H0Q2j4hloYXCZX+3E5h+INf3sj3On8Wy0HdAFlbCT4tlX+gGoUbKM+UzbmV4DvE9vRbvIu46ieJkcMoIGTRmxmDkH8ouj0bc1R9zYfnV+JhpQy06BPfyIIF7Xen8ShLtYezK3k478Jtu4O7BprQAvp0zj+ZKzmo8Ar89inC3GySuZbD0vS7GVPKg0f2y7/t/ACiucs0=
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Main chat endpoint"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/chats/chat"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Handles all AI chat scenarios
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["message"],"properties":{"message":{"type":"string","example":"Show me sales trends for Q4"},"data_source_id":{"type":"string"},"conversation_id":{"type":"string"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Chat response","content":{"application/json":{"schema":{"type":"object","properties":{"response":{"type":"string"},"chart":{"type":"object"},"sql_query":{"type":"string"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

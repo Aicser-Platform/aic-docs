@@ -1,0 +1,72 @@
+---
+id: create-project-dashboard
+title: "Create project dashboard"
+description: "Create project dashboard"
+sidebar_label: "Create project dashboard"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vk1v2zgQ/SvE9NIGquW0e9Jp07QpUiywRpJuD4mxGEtjmS1FskMqWVfQf18MKdtJXPSywJ4kkvP5ZviGA0RsA1S38B7DZuWQmwDLApwnxqidvWyggpoJIy3YfaU67gWhgEB1zzpuobod4B0hE5/1cQPV7XJcFuCRsaNIHJKAxY6gAsft31q0tYUKPMYNFMD0vddMDVSReyog1BvqEKoB4taLVoisbQvjWOwN+RzQfzG2zMIU4jvXbEXiuW7tbCQb5Qi9N7pOsJRfg7Oyd2TarSQmGMdxFNvBOxsoiMCb+al8Ggo1ay9WoDrArjLIjWT4TOY8nagpXdU8KkBHceOkRN6FCEUGoIKy3iDHUKLXpeMWrf6Rwg7lkNEfy8laKIcDjGPZHLpAqsv3u9r1bKCCTYw+VGWJ3s9Q14F4VrsOnge8YNf0tSxUtgFStYOJqiyNq9FsXIjV2/l8fmThPd2Tcb4jG/cmlod+uxbUM6qPu25fBHECU91lvUpCUEw/F447jFDBpy83R64/fblR0X0jq9wqorbUqDW7TiUwsY+bsg/EoQy6tdqmckkzXB3a6MM/2HlDUA2j9OXapch0lC04S7CphcG4dtyps8UlFCA4Z/ens/nsGI+bDamfaEpP3OuGgvy0jF2HUdcK65pCUNEpNEb5ncKaMPZMocgJnV2+9u6BmBqV2kW1ZKdbL6qSperQYkupDGgb1WBEhRbNNugwU+96baJ60HGjLjBECUik1s4Y96Btq64+XN8oz9rW2htx7HpOceugGhIEBV3HyhNLiGhrKhST0bjSRsdtkQwSBlJurbSN1OYIZ3f2zr54oT5SjOLpOiJHamT3dKZOTqQhyMbpup6cVOpat1b1PhnMlVXbXTg1UyPSaMKdfSP6585auWzvMaJof/bGYaPW2lBQjlU9nUeXQFlhoHBn3ybXgs8PSlqB1NmlCH3vibfJN+bj7Fx07+xvovaXDj0anRU/5lJQrkxIipkgDtc/TBBcye4futMChOy9VicnF0ykoiYWa6fzuZpoLpQb13OWWbA7iBTz50JKZbEPNhJ71iFFdt6H6DplxN8uguvee8dRVheOVcjLQlGH2uyWvx8IQwC810HH1A+3jat7abFUquXLHck0rg6PWObV7M5C5mOsEx9PY2C6F1MQUEByKyx/5BiK50R2OBoLMLomG+iR7QU7z5oi8vYXumUk7kKiAuHhDu0jE79g7yd3fE9ekf6JpTco5DL5HCZiv4XcD1AAeg0FPCF3KKDaD9cdv8vmk0HZPBn0QsFidxikhT+zGUfZTu0qY7yAe2SNK+Gu2wEaHeS/gWqNJtBRCvtpCS+vpkH6SkHx89SmTbSC7T2aXlZQwDfaHp4JMjn+R6+PoBqXYwEbwoY45Z4FzrOv1zdi5mDg6G0g42o/nRd/XsugWU1vjM41osP4II8VfMgBOJ+rKI8Q2RvAoG17bEU225QOw6ej7tloS5H+NMVhyBI3MtvGcZ9xmnWS7Dj+C1uAfDA=
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Create project dashboard"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/charts/api/organizations/{org_id}/projects/{project_id}/dashboards"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Create project dashboard
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"org_id","in":"path","required":true,"schema":{"type":"string"}},{"name":"project_id","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Dashboard created"}}}
+>
+  
+</StatusCodes>
+
+
+      

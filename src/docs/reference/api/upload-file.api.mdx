@@ -1,0 +1,72 @@
+---
+id: upload-file
+title: "Upload CSV or Excel file"
+description: "Upload CSV or Excel file"
+sidebar_label: "Upload CSV or Excel file"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9VU1z2zYQ/Ss7yKX10KKc9MRTbcfOONOZeiInOdg6rMCVhAYEkMXSiaLhf+8sSNmOnVYXEcDbD7zFvt0bwU02za15i4KwiD1bymZZmZiIUVwMV61pTJ98xPbSeTKVyWR7drIzze3enBEy8WkvW9PcLodlZZi+9pTlLLY70+zL0jG1phHuqTI2BqEgetT1XlxClnoduTtuUVC3s91SV75kl8g0Jq7+ISumMok1LXGU9XSt6TyisrALG1MZdYZiGrNyAXlnhsoE7H4BHcpPM84phjx6fT0/0b+WsmWXlAHTGL05jCRQC7m3lnJe997vjDr4Gfyx4OB88Qkiw8V3Sx7WI3UdyTYqoSnmciFU3kytV69H/4VgvifOhd+evWnMViTlpq4xpRk6m4lnNnbmeeRrjm1vdQGjDzNUT100de2jRb+NWZo38/n8hYe3dE8+po6CPLhYPpZ8oaUZeXpa+AdiNYheoMC0AgVkqunj8lCZ959vXoR+//kGJH6hAHEl6AK1sObYQY3J1djLtu4zca6z2wQXCu8urGOJ7kSfgjkt1MC1R9FHAKfXV6YyyuUY4mQ2n728882W4BeWkDjeu5ayfmwYuw7FWcBSe5AI6D2kg8GaUHqmXI1Jn14dp/iNmFqwW2SBDYWpodRUbwIdBtxQoRpDC/oGAAP6XXZ5Bme98wLfnGzhErNoQopaR+/jNxc28OFicQOJXbAueQ0cey55uwwtKUvKYGRIxKUlgqUKmLzDlfNOdlVxSJgJ4hpcENqMGc7uwl149QrekYhGWgiyUKu7JzM4OtKiUxBnC/roqIGF2wToU3E4Vg92h3QsU6to9PkuvFb78xgCWQHVHLWeGkZ7JGvL2OlcYiFlhZnyXXhTQis/P6hYZYLTKwV97Yl3JTaOx2Nwtb0Lf6jZJ5d79G40fDeWgsbK5GJomXSnxbxdReQ2TxR80N2/XOeUCN07hqOjSyYCccTq7WQ+h0nycr2NPY+Ya46PkGr+HAQwwi6CECd2uWR23meJHXiNd8hg0acUWXR1GRnyuKyAOnT+sPzzURSUwHuXnZT3cNtG2+sTK6Va/nYQkjba/ERJfp/dBTNqM9qizaNiHjpqSsJUpoRVCX0R2FTPxerxaKiMd5ZCpie+rzkmdiSq0f9tWwtxl0u7q2h2GJ64+B+p/anHHwRK6LvUyaMKyBRzP6nwrSkDqJqGnQ5B1Uk92O/1DX5kPwy6Xd6bjrvK3CM7XKn43C6HymwJW+Ii3F9oZxpzPk674xsNr3Dfaxq/mnyqsw/z4frvhSrkahqiXWzVTMFTkg+fY2D8WYef6W5JaDrCsHuSyH4/Im5UeIfBVFPeRYjNsByG4V+ahdGB
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Upload CSV or Excel file"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/data/upload"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Upload CSV or Excel file
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"multipart/form-data":{"schema":{"type":"object","properties":{"file":{"type":"string","format":"binary"},"name":{"type":"string"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"File uploaded successfully"}}}
+>
+  
+</StatusCodes>
+
+
+      

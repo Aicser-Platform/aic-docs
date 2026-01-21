@@ -1,0 +1,72 @@
+---
+id: generate-sql
+title: "Generate SQL from natural language"
+description: "Generate SQL from natural language"
+sidebar_label: "Generate SQL from natural language"
+hide_title: true
+hide_table_of_contents: true
+api: eJyNVt9PGzkQ/les6csdWrKhvad9upRCRYV0lNDrQ4iqiXeSdeu1jT0LzUX7v5/Gu4EA1el4gLX9za9vxp/ZAeMmQbWA2YWaObRbNjrBsgAfKCIb7y5qqGBDTpY0/3wJBSTSXTS8hWqxg/eEkeKs4waqxbJfFhDprqPE7329hWqXlyZSDRXHjgrQ3jE5liMMwRqdw5Tfk3eyl3RDLcoXbwNBBX71nTRDASFKUmwoyWmOYQabEZk4GreBvoAaGb8l30VN30z9C0j+kVRT8C4NHt9Op/KnpqSjCYNv+DhWXqv550t111Hcglj+GpVB6+hb5ZC7iFZZdJsONwQFtMSNFzaDT7keFM6gRFPqBrnck3yc7mxmOd5TTJnkLlqooGEOqSpLDGGCRieKE+1beJnMVfR1p2WhBh/QF4cuqrK0XqNtfOLq3XQ6feXhA92T9aElx48ulk99n0uLBs4Ou/9IsgSRAjIMKlhlEBTjx7mPLTJU8OnrzavQn77eKPY/yCm/YjSO6oHPEoMpseOm7BLFVCazccblVsjkXD/N3NlPbIOl5zOyb/zr0TiYGuPWPpdhWOxhljlWVxZ57WOrZlcXUIA0ZfB5MplOXpN305D6haUK0d+bmpJ8bCK2LbLRCrWmlBR7hdaqsDdYk8wPpWKofnZxHPwDRaqVbjCyGmdFesxeCSWqRYcbyj1DVyupU6Fc6WTSRL3vjGX1YLhR55hYEhLU2lvrH4zbqOuz+Y0K0ThtgpXAvos5b5NUTUK3tMJHFShKiug0FSqSNbgy1vC2yA4JEym/VsYxbYYMJ7fu1r15oz4Ss0SaM0amWnZPJuroSKaHHI9CcHRUqbnZONWF7HAYA7Xdp6Mj1YJGm27dW7E/9c6RZvUBGcX6S7Aea7U2lpLyUenxnH0mZYWJ0q17l0MLP/9QtkqkZhcCypc8x8bheAgutrfuDzH726QOrRkMH+9+7kzKhjqS7NSYmpXHWKeRgmvZvTStESJk71gdHZ1HIsWGong7mU7VKKCpbHwXB8xV9E+QYvoSpNQAO3NMMUSTcmanXWLfKivx9hnMuxB8ZFmd+6jSsCwUtWjsfvnnk7oIgfcmGc7zsKi97mTEcquWv+0VqfY6HUjS75NbB4PSo85K77A9uFFjElBADiuX8FVgKF6q3tNRX4A1mlyiA99X0YdoiDFu/8O2ZIptyrohMtyiO3Dxv2T82W1/1Dymn1wGi6JJY/TdqPALQCNsNCgVP1P5ZQGiwoLZ7WQwv0Tb97I9vDTVYlnAPUaDK1GkxbIvoCGsKeZn4QdtoYLT4UE9vpFMBG47yejV4yoS/vgGXf01F/FdjY9062uxifgARf5dAcg/AWKdhT7v7eCRhwoGn0IkPpf/F3KfMx2P0G0PMtztBsSN6H3fQzEWlPUf+mXf9/8C/yj+zw==
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generate SQL from natural language"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/ai/chat/generate-sql"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Generate SQL from natural language
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"question":{"type":"string"},"data_source_id":{"type":"string"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Generated SQL query"}}}
+>
+  
+</StatusCodes>
+
+
+      
