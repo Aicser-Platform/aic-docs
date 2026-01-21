@@ -1,0 +1,71 @@
+---
+id: login
+title: "User login"
+description: "Authenticate user and obtain access and refresh tokens"
+sidebar_label: "User login"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9V1tz2jgU/itePRswBLKpn8qm3R0y2S2TS7uzmUxGyAdQY0uOLlDK8N87R7KDXCi5dHd5ScA6t+985zvWmhg60yS9IUNr5iAMZ9RwKchtTDLQTPHSfU3D5xBZDSqiIovkxFAuIsoYaO1+UTBVoOeRkfcgNImJLEE5n6OMpCSXMy5ITBQ8WNDmN5mtSLp2X7mCjKRGWYgJk8KAMPiIlmVeZdX5rDGXNdFsDgXF/8yqBJISOfkMzFR+vaMbAgXlOYlJSbVeSpVhUaXCfAwHjdb+xNaNNoqLGYnJVKqCGpI++miCcY31u0cRzTIFGguFL7Qoc3SD8LytvraZLMgmSOJQtMdDMSm4OAcxM3OSnuwNH5zdRr4EZhWMq0fd3tEvZLOJieHGPT5H9C889JhUZbjFwh1wCNuioGpV20RLbuZRDcaC5hYC/HYLDuvdnxR+sF26lEL7DHpJgn+atfrw2jqGTS2GfzU5ms33pL1zRN3XlWYeZ5+uapp7ixB2WJ3NJ38w/oGfja6/jrp/8ZEeiYsBOx0dj+7Lvz+enr1pt9vEVezm4yVhGyP12rjO+M4HeyroFZ6N3Jkw2gSoAuV5U3IF+o6HFXBhYAbqB96ciWtUZHgBETYVmBRZY3SOjpNkEzs+Pd1AfniYrOXZ/sm1gj9YiHiGgjblLudtmYNBAif9JGlB782k1e9m/Rb9tXvc6vePjweDfj9JksSB8P+Jh6DFM9rmHE9tnkfufOj0TM5F9E6CY6DM9zoDYQuUTZoVTqJdE2Ky4LAEtbsQXDTnKwzkjTcxYQqogeyOmoMQZdRACwmxU82QMWmFiZyjmjba0KJsBOwlvX4r6ba6g6tukh4laZL8g/Ftmf1c/HOqTeS9vDA013eUGb4IUZ5ImQMVP6zSG0TaUGMbfMB9GEo4wt7QdDdeF5WOfi/qlW42Ff3yUUyjeh0/KnpTFJ8tMDu69gLLUJlqjWlKDKrCVhRw7J83pPGhBeVnajsZ9WDUFK5XVD/p7m6lkVjQnGdITiciNNf/3mICpaR6etzf47Fdlb4W1Jq5VPwrZEiHArSms2fIh/dXHw9d7qs2pKCzJBVcvd4uXB/R3E+xL+6/x2qbfRC8ShQrN5TnOjCkStEViQk3UOin40455HvXT7CcHfcOd2AXY78YKn2qKFjjvK1ki7jzb+YSh6KU2mVK8a2RdJAHnXrCNagFKHzVXxOrcCbmxpQ67XRoyduUMw0KJ6Oz6O4wY6xkZplD0Lshmzj0knY6uWQ0n0tt0hM/eU0P72ABuSwLEObRxS0mxaziZnWJ3fbAegHA20aAFwbBGtyxUCX8P7/Xan726erJF7fqzgJZNFWy8AoYgchKyYVxtEYOXmzvJ+/rHv3M+25MuJhKV1LVzKGDPBrn1GC3o+F4hEIMSvu8u+2kvQvkcNQayyUoyKKhoPnKcKYbPpA6EbPayAKUw5ozcDezidVcIAz4opbnfAaCQTWJlLlJrDSxSu3SlqVUyKjvCPNIlkBhtT/8Nni4iUnOGeBa2vr+c3S141CWILS0ikFbqlmnMtIdPIsNQV4XVARe3MtHTe0GQuutsrz+zlrRzsAX0ylz6t9oXM7rarpuCE4XiasL7W1MkPz4+3o9oRquVb7Z4M8PFnDp3tziklWcTrD5N7ebmMyBZrjRbtbkHnAvn/rEW1de0qudvCuPOHzeYsgYlObg2dtAH8YfLhH8SXXpLmSGNooucfnRJUmJu6+jtZtF99ua5FTMrBMw4n3i5xutAoqt
+sidebar_class_name: "post api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"User login"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/login"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Authenticate user and obtain access and refresh tokens
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["email","password"],"properties":{"email":{"type":"string","format":"email","description":"User email address","example":"user@example.com"},"password":{"type":"string","format":"password","minLength":8,"description":"User password","example":"SecurePassword123!"}},"title":"LoginRequest"},"examples":{"emailLogin":{"summary":"Login with email","value":{"email":"user@example.com","password":"SecurePassword123!"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Login successful","content":{"application/json":{"schema":{"type":"object","properties":{"access_token":{"type":"string","description":"JWT access token","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."},"refresh_token":{"type":"string","description":"JWT refresh token","example":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."},"token_type":{"type":"string","description":"Token type","example":"bearer"},"expires_in":{"type":"integer","description":"Token expiration time in seconds","example":3600},"user":{"type":"object","properties":{"id":{"type":"string","format":"uuid","description":"User unique identifier","example":"550e8400-e29b-41d4-a716-446655440000"},"email":{"type":"string","format":"email","description":"User email address","example":"user@example.com"},"name":{"type":"string","description":"User full name","example":"John Doe"},"role":{"type":"string","enum":["admin","user","viewer"],"description":"User role","example":"admin"},"created_at":{"type":"string","format":"date-time","description":"Account creation timestamp","example":"2024-01-15T10:30:00Z"},"updated_at":{"type":"string","format":"date-time","description":"Last update timestamp","example":"2024-01-15T10:30:00Z"},"is_active":{"type":"boolean","description":"Account active status","example":true}},"title":"User"}},"title":"TokenResponse"},"examples":{"success":{"summary":"Successful login","value":{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...","token_type":"bearer","expires_in":3600,"user":{"id":"550e8400-e29b-41d4-a716-446655440000","email":"user@example.com","name":"John Doe","role":"admin"}}}}}}},"401":{"description":"Invalid credentials","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error type","example":"Unauthorized"},"message":{"type":"string","description":"Error message","example":"Invalid credentials"}},"title":"Error"}}}},"422":{"description":"Validation error","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","example":"Validation Error"},"details":{"type":"array","items":{"type":"object","properties":{"field":{"type":"string","example":"email"},"message":{"type":"string","example":"Invalid email format"}}}}},"title":"ValidationError"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

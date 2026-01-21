@@ -4,9 +4,9 @@ const config = {
   favicon: '/favicon.ico',
   
   // GitHub Pages deployment configuration
-  url: 'https://aicser-platform.github.io',
-  baseUrl: '/aic-docs/',
-  
+  url: 'https://docs.aicser.com',
+  baseUrl: '/',
+
   // GitHub Pages deployment branch
   deploymentBranch: 'gh-pages',
   
@@ -39,7 +39,7 @@ const config = {
           path: 'src/docs',
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/aiser-platform/aiser-world/edit/main/packages/docs/src/docs/',
+          editUrl: 'https://github.com/aiser-platform/aic-docs/edit/main',
           // Show last update time
           showLastUpdateTime: true,
           // Serve docs from root of baseUrl to avoid double /docs/docs/ paths

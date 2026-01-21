@@ -132,6 +132,12 @@ const sidebar: SidebarsConfig = {
           label: "UpdateDataSourceRequest",
           className: "schema",
         },
+        {
+          type: "doc",
+          id: "reference/api/schemas/validationerror",
+          label: "ValidationError",
+          className: "schema",
+        },
       ],
     },
   ],
