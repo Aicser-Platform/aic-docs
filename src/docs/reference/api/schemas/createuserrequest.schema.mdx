@@ -6,11 +6,7 @@ sidebar_label: "CreateUserRequest"
 hide_title: true
 hide_table_of_contents: true
 schema: true
-<<<<<<< HEAD
 sample: {"email":"user@example.com","name":"string","password":"string","role":"user"}
-=======
-sample: {"email":"newuser@example.com","name":"Jane Smith","password":"SecurePassword123!","role":"user"}
->>>>>>> 6e80a86e4200c6c745ce0c6d39d18ea928e3dda2
 custom_edit_url: null
 ---
 
@@ -29,11 +25,7 @@ import Heading from "@theme/Heading";
 
 
 <Schema
-<<<<<<< HEAD
   schema={{"type":"object","required":["email","name","password"],"properties":{"email":{"type":"string","format":"email"},"name":{"type":"string"},"password":{"type":"string","format":"password"},"role":{"type":"string","enum":["admin","user","viewer"],"default":"user"}},"title":"CreateUserRequest"}}
-=======
-  schema={{"type":"object","required":["email","name","password"],"properties":{"email":{"type":"string","format":"email","description":"User email address","example":"newuser@example.com"},"name":{"type":"string","minLength":1,"maxLength":100,"description":"User full name","example":"Jane Smith"},"password":{"type":"string","format":"password","minLength":8,"description":"User password (min 8 characters)","example":"SecurePassword123!"},"role":{"type":"string","enum":["admin","user","viewer"],"default":"user","description":"User role","example":"user"}},"title":"CreateUserRequest"}}
->>>>>>> 6e80a86e4200c6c745ce0c6d39d18ea928e3dda2
   schemaType={"response"}
 >
   

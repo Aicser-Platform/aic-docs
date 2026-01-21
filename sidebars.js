@@ -1,6 +1,8 @@
 // sidebars.js — Clean version with only existing content
 // Only includes files that actually exist in the src/docs directory
-const apiSidebar = require('./src/docs/reference/api/sidebar.ts').default;
+
+const { reference } = require('./sidebars-reference.js');
+const apiSidebar = require('./src/docs/reference/api/sidebar.ts');
 
 const sidebars = {
   docs: [
@@ -22,7 +24,7 @@ const sidebars = {
         'getting-started/demo-walkthrough',
         'getting-started/faq'
       ]
-    },
+    },  
 
     // Self-Host
     {
@@ -113,20 +115,27 @@ const sidebars = {
         icon: 'Wrench'
       },
       items: [
-        'troubleshooting/troubleshooting-overview'  // File: troubleshooting/index.md with id: troubleshooting-overview
+        'troubleshooting/troubleshooting-overview'
       ]
-    }
-  ],
-
-  // API Reference Sidebar - Auto-generated from OpenAPI spec
-  reference: [
-    {
-      type: 'doc',
-      id: 'reference/api-reference',
-      label: 'API Overview',
     },
-    ...apiSidebar,
+
+    // API Reference
   ],
+  reference:[
+    {
+    type: 'category',
+    label: 'API Reference',
+    collapsed: true,
+    customProps: {
+      icon: 'Book'
+    },
+    items: [
+      'reference/api-reference',
+      'reference/config-reference',
+      ...apiSidebar, // Auto-generated API docs
+    ]
+  },
+  ]
 };
 
 module.exports = sidebars;
