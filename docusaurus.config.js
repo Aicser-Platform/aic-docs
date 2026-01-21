@@ -20,7 +20,7 @@ const config = {
   // Custom fields (domain and port configuration)
   customFields: {
     domain: 'docs.aicser.com',
-    port: 3005  // Use port 3005 for docs
+    port: 3000  // Use port 3000 for docs
   },
   
   // Even if you don't use internalization, you can use this field to set useful
@@ -31,7 +31,7 @@ const config = {
   },
   
   // Docusaurus presets
-  presets: [  
+  presets: [
     [
       'classic',
       {
@@ -104,7 +104,10 @@ const config = {
     navbar: {
       logo: {
         alt: 'Aicser Platform',
-        src: 'img/logo.jpg',
+        src: 'img/aicser_light_mode.png',
+        srcDark: 'img/aicser_dark_mode.png',
+        href: 'https://aicser.com',
+        target: '_self',
       },
       items: [
         {

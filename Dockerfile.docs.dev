@@ -21,11 +21,11 @@ COPY src ./src
 COPY static ./static
 
 # Expose port
-EXPOSE 3005
+EXPOSE 3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:3005/ || exit 1
+    CMD curl -f http://localhost:3000/ || exit 1
 
 # Start development server with hot reload
 # The actual source files will be mounted via volumes

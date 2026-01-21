@@ -1,0 +1,72 @@
+---
+id: delete-user
+title: "Delete user"
+description: "Delete a user from the system"
+sidebar_label: "Delete user"
+hide_title: true
+hide_table_of_contents: true
+api: eJyNVMFu2zAM/RWBpw3QkmzrybcMbYEMOxRtih2CHFibjoXJkirS6QLD/z7Qdtd2a4edLFrk0+PTo3oQPDAUO7hlygx7CxVxmV0SFwMUcE6ehAyajimbOsfWSEOGTyzUgoWYKKPmbioooBqzFQosJMzYkihsseshYEtQgOJsKrDgFD6hNGAh033nMlVQSO7IApcNtQhFD3JKWsWSXTjAMOw1mVMMTKz7n1Zn+nlJWgmYiUtluCtLYq47708wWDh7syJEMXXsQgXDYKElaeJTU2ND0kABS22Bl/3UyQAWmPLxsc0ueyigEUlcLJeY3AJdyZQXZWw1hD8Vvsqx6koNzIQDg30OUyyXPpbom8hSfF6tVq+inNORfEwtBfkNs1dmZZednEZqd4SZ8rrTLnb759s3qvck6POk3/IrD5ivReMpCey8uIy5RYECvn7fjtq5UMex3InX/PUogbnyKHXMrVlfbcCCajax/7hYLVZ/9bRtyLxSaVKOR1cR6+KQsW1RXGlwvGYj0aD3Jj0W1ITSZWI7mXe9+ZDiA2WqTNlgFnOgMDtYS0eXtxjwQKOUGCpToaDBgP7EjhfmS+e8mAcnjblEFiWkWXX0Pj64cDDXFzdbk7ILpUteD45dHnk7NhWxOwTS9GwSZaWIoSRrMnmHd847OdkRkJDJxNq4IHSYGC7UvymytBhU3nmk5hntprF7oWEPZQxCQf5jlOe7Fvopy+TRBT1t9GE/W383Ti+DhWIe470F9aVu9f0dMt1mPwz6+76jrLbbWzhidninRtj1UDnWdQVFjZ7pH3zfXc+vwnvzFrv5J4aT2gl9pxFY+EGnp6dm2D+f5vOLbxfbCxiGXw1suDc=
+sidebar_class_name: "delete api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete user"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/users/{userId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete a user from the system
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"userId","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"User deleted successfully"},"404":{"description":"User not found"}}}
+>
+  
+</StatusCodes>
+
+
+      

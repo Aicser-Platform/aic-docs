@@ -1,0 +1,72 @@
+---
+id: update-data-source
+title: "Update data source"
+description: "Update an existing data source configuration"
+sidebar_label: "Update data source"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVt9v2zYQ/leIe2oBxXYXoN305i4tkD0FaYI9GEZxFk8yO4pkSCqJIeh/H46UHcX2gm2oXyyJvF/fffeRPURsApQruMKI4pvtfEUB1gVICpVXLiproIR7JzGSQCPoWYWoTCMkG4RkICpratV0HtP2Aqyj/HwtoYQuGXOA7B8KcOixpUieY/dgsCUoQR62XEsoQHFkh3ELBXh66JQnCWX0HR2nd7cl0Rn10JFQkkxUtSIvbC3ill4l+o5mzawQcvPd2RAbT+FBf//w6eOvn377eHl5+R4KCNWWWoSyh7hznFWIXpkGCqBnbJ1Oif6DPQzDOudKIX62csdujlOvrIlkIi+hc1pVCan5j8Cl9Kfx7eYHVZFB84xrVBR4NWN2nOWQ/NeqOXUwDAVEFVMB90ctuc0pwzDwLk/BWRNynF8WC/57DfjVBNPcXilCV1UUQt1pvYOfVqaS/7MVJxQ+4ceTilvhPNXqWSgjU4YjsTcYSHBQgUaKqFoKEVvH8J7HfZrSjbeyqzisuBp9sWE2OGNoupYn8KUMKKDdjf/WNFZuoICNah468gxtuOQJfQk4sXyj/8fIbm2IZwnkrJ8uKBOpIc8re2jOmDFvQsTYhbdqrKwxVEXi8ZYqTF/Je+thzQV4YkItz2RXQG19izGLBV1wZzixkYP/3mQyCxNhGjL/W4pby8rlugQbS1AJc65+nkkf5v1UrAZuCvnHvZ51XkMJ2xhdKOdzdGqGqgrkZ5Vt+fWEnBPKZD8wFFM35XyubYWae1ZeLhaLs16u6JG0dS2ZeHCz5syqzqu4S6ltCD35ZcclrdbT5W88kZka000HPDmPvT7ye97EzEwPX/co//HnXcKXJ/32RQq/7Ol6kPtDgw6MZTNlapuiju1ZJuTEjcbIjRTLm2sogKHORX+YLWaLEyj4RDhjKZy3j0pS4IfGY9tiVJXApFwiWoFaC7c3qAlj5ykUova2FcvrC2efyJMU1RZ9FA2Z8Zxj046DtWiwodQBVo509qBBvQsqzMTnTumYdecrhsgJ8a7aam2fWHtuv3y7E84rUymnObDtfMpbBSEpqMYQb/fCkU+0NhUVwpNWuFFaxV2RHBLLl61FGt2c4SxPdogtmkkPxoN9ckYeQ9m/KPl/vQaMxIn0HOdOozJpVJnU/ThUqyQpzKrx5lFA+eoWsC5GnVpB37P03Hs9DPw5i2G5WhfwiF7hhtmy6llW+FlCWaMOx1eFaTXvbseT+b34mReIs1WPH9Gwfj+i7vgNCviLdscXn4E1cEsoyaeC8pbfc9oXd+zoxcXJ0cq6kS2WVUUuvrl3PdG6m/s7nuXx0tJaySYen/jyhU85W5tQTBKRvvWg0TQdNrw3u+Tf3yPRlS0=
+sidebar_class_name: "put api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update data source"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/data/sources/{dataSourceId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an existing data source configuration
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"dataSourceId","in":"path","required":true,"description":"The unique identifier of the data source (e.g., db_postgresql_1768796333)","schema":{"type":"string","example":"db_postgresql_1768796333"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"config":{"type":"object"}},"title":"UpdateDataSourceRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Data source updated successfully","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"db_postgresql_1768796333","description":"Unique identifier with prefix indicating database type and timestamp"},"name":{"type":"string","example":"Production Database"},"type":{"type":"string","enum":["postgresql","mysql","mongodb","bigquery","s3"],"example":"postgresql"},"config":{"type":"object","properties":{"host":{"type":"string"},"port":{"type":"integer"},"database":{"type":"string"}}},"status":{"type":"string","enum":["connected","disconnected","error"]},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"title":"DataSource"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

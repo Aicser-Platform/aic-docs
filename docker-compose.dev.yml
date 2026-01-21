@@ -7,10 +7,10 @@ services:
       dockerfile: Dockerfile.docs.dev
     container_name: aicser-docs-dev
     ports:
-      - "3005:3005"
+      - "3000:3000"
     environment:
       - NODE_ENV=development
-      - PORT=3005
+      - PORT=3000
       - BASE_URL=/
       - DEBUG=true
       - WATCH=true

@@ -5,12 +5,12 @@
   "private": true,
   "scripts": {
     "docusaurus": "npx docusaurus",
-    "start": "npx docusaurus start --port 3005",
+    "start": "npx docusaurus start --port 3000",
     "build": "npx docusaurus build",
     "swizzle": "npx docusaurus swizzle",
     "deploy": "npx docusaurus deploy",
     "clear": "npx docusaurus clear",
-    "serve": "npx docusaurus serve --port 3005",
+    "serve": "npx docusaurus serve --port 3000",
     "write-translations": "npx docusaurus write-translations",
     "write-heading-ids": "npx docusaurus write-heading-ids",
     "typecheck": "tsc",
@@ -26,8 +26,8 @@
     "@docusaurus/preset-classic": "3.8.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
-    "docusaurus-plugin-openapi-docs": "^4.0.2",
-    "docusaurus-theme-openapi-docs": "^4.0.2",
+    "docusaurus-plugin-openapi-docs": "^4.6.0",
+    "docusaurus-theme-openapi-docs": "^4.6.0",
     "lucide-react": "^0.468.0",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
@@ -38,6 +38,11 @@
     "@docusaurus/types": "3.8.1",
     "@types/react": "^18.2.0",
     "typescript": "^5.0.0"
+  },
+  "overrides": {
+    "postman-code-generators": {
+      "async": "^3.2.4"
+    }
   },
   "browserslist": {
     "production": [

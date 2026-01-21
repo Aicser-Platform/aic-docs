@@ -1,0 +1,72 @@
+---
+id: delete-data-source
+title: "Delete data source"
+description: "Remove a data source connection"
+sidebar_label: "Delete data source"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVE1v2zgQ/SvEnFqAtd1N0XZ1y8IpkMUegiRFD4ERjKWRRCxFMuTQqSHovxdDOanjTYEe9iSSejPz5s3HCIxdguoO1siobnyONSXYaGgo1dEENt5BBdc0+B0pVI3AUoGp2jtHdUFo8IEiyvmygQoassQkPmeXoCFgxIGYooQbweFAAnyGXDagwUiwgNyDhkgP2URqoOKY6ZTRbU8qO/OQSZmGHJvWUFS+VdzTC5ZvaNEttGq298En7iKlB3v//tPHz5/+/Hh2dvYWNKS6pwGhGoH3QVgljsZ1oIG+4xBsIfoLe5imjXBNwbtESZz8sfogn5d810eUZnUalXJdU0pttnYP06RhIO79T/2KatxDBUvJaDmbp+V4rNokCVDcPQmbo4UKeuaQquUSg1mgqRPFRe0HucKpklfRN7mUUc1+YNLHbqrl0voabe8TV2er1epVL2vakfVhIMfPbjbCrM7R8L5Q2xJGiudZUrrbHP++kQrM6h2DngsiPJ4KJfcZBPpw+OLjgAwV/P3ttghpXOuLueFSvfMigbqyyK2Pgzq/ugQNotnM/v1itVj9JyfpsVcsVYh+ZxpKcugiDgOyqRWWYir2Cq1V4cmgJeQcKWnVRj+o88t3wT9SpEbVPUZWHbnD5IhplmADOuyoSImumbsZHdp9Mmmh/srGsno03KsvmFgICar11vpH4zp1fXFzq0I0rjbBSmCfY+Ftkmoomc6RwKMKFIUiupq0imQNbo01vNfFIWEiGSjjmLqZ4QImDTIGAzqR9zDE69Ktx1N3KuUItXdMjn9rlxyKzvSdl8GicRK2NOR4GIi7sjikIw4bS0P1YpVsNEi/CnIct5joa7TTJM8PmaK040bDDqPBrTTI3QiNSXJuoGrRptN9c5zAm+vDZnqr/s8t9GrWh0d0e+lXtFluoOFf2p9uz2lzvEHWF/9c3F7ANP0AM3gIgA==
+sidebar_class_name: "delete api-method"
+info_path: reference/api/aicser-platform-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete data source"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/data/sources/{dataSourceId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Remove a data source connection
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"dataSourceId","in":"path","required":true,"description":"The unique identifier of the data source (e.g., db_postgresql_1768796333)","schema":{"type":"string","example":"db_postgresql_1768796333"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Data source deleted successfully"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -7,51 +7,17 @@ description: Complete documentation for Aicser Platform - AI-powered business in
 
 import Icon from '@site/src/components/Icon';
 
-# <Icon size={30} name="Rocket" /> Aicser Platform Documentation
+# Welcome to Aicser Platform
 
-**Complete guide to the AI-first business intelligence platform that transforms how you interact with data.**
+**Transform your data into insights using natural language. Built for everyone from executives to analysts.**
 
-Welcome to the comprehensive documentation for Aicser Platform - the next-generation AI-first business intelligence and visualization tool designed for everyone from executives to analysts.
+Aicser is an AI-first business intelligence platform that lets you create charts, analyze data, and get insights just by asking questions in plain English.
 
-:::info Open Source Coming Soon
-Aicser Platform is being prepared for open source release. We're working hard to make the core platform available to the community while maintaining enterprise-grade quality and security. Stay tuned for updates!
-:::
-
-## <Icon size={25} name="Target" /> What You'll Find Here
-
-### <Icon size={20} name="Rocket" /> **Getting Started**
-- [Quick Start with Docker](./getting-started/quick-start-docker) - Get running in 5 minutes
-- [First Chart Creation](./getting-started/first-chart) - Experience AI-powered analytics
-- [Demo Walkthrough](./getting-started/demo-walkthrough) - Interactive platform tour
-
-### <Icon size={20} name="Building" /> **Deployment & Operations**
-- [Self-Host Guide](./self-host/) - Production deployment
-- [Docker Configuration](./self-host/docker-compose) - Containerized deployment
-
-### <Icon size={20} name="Bot" /> **AI Features**
-- [AI Overview](./features/ai-overview) - Natural language queries, multi-agent system, and intelligent insights
-- [Charts & Visualizations](./features/charts-overview) - 30+ chart types with ECharts integration
-- [Data Sources](./features/data-sources-overview) - Connect to databases, warehouses, files, and cloud storage
-
-### <Icon size={20} name="Shield" /> **Security & Enterprise**
-- [Security Overview](./security/) - Platform security features
-- [Performance Tuning](./performance/) - Optimize your deployment
-
-### <Icon size={20} name="Wrench" /> **Development**
-- [Developer Guide](./developer/developer-index) - Setup, architecture, and contribution guide
-- [Community](./community/community-index) - Join our community and contribute
-
-## <Icon size={24} name="Sparkles" /> Why Choose Aicser?
-
-- **<Icon size={18} name="Bot" /> AI-First Design**: Built from the ground up for AI-powered analytics
-- **<Icon size={18} name="Rocket" /> Coming Soon: Open Source**: Core platform will be open source - stay tuned!
-- **<Icon size={18} name="Briefcase" /> Enterprise Ready**: Scale from startup to Fortune 500
-- **<Icon size={18} name="Lock" /> Privacy First**: Self-host or cloud with full data control
-- **<Icon size={18} name="BarChart" /> Natural Language**: Ask questions in plain English, get charts instantly
+---
 
 ## <Icon size={24} name="Zap" /> Quick Start
 
-Get Aicser running in 5 minutes:
+Get running in 5 minutes with Docker:
 
 ```bash
 git clone https://github.com/aiser-platform/aiser-world
@@ -59,33 +25,112 @@ cd aiser-world
 docker-compose up -d
 ```
 
-[Start Building →](./getting-started/quick-start-docker)
+Then open `http://localhost:3000` and start asking questions about your data.
 
-## <Icon size={24} name="Settings" /> System Requirements
-
-| Component | Minimum | Recommended |
-|-----------|---------|-------------|
-| **CPU** | 2 cores | 4+ cores |
-| **RAM** | 4GB | 8GB+ |
-| **Storage** | 20GB | 100GB+ |
-| **OS** | Linux, macOS, Windows | Linux (production) |
-
-## <Icon size={24} name="HelpCircle" /> Need Help?
-
-- **<Icon size={18} name="BookOpen" /> [FAQ](./getting-started/faq)** - Common questions and solutions
-- **<Icon size={18} name="MessageCircle" /> [Telegram Community](https://t.me/+XyM6Y-8MnWU2NTM1)** - Join our community
-- **<Icon size={18} name="FileText" /> [Feedback](https://feedback.aicser.com)** - Share your thoughts
-- **<Icon size={18} name="Mail" /> [Support](mailto:support@aicser.com)** - Enterprise support
-
-## <Icon size={24} name="Globe" /> Community & Support
-
-Join our growing community:
-
-- **<Icon size={18} name="MessageCircle" /> [Telegram Community](https://t.me/+XyM6Y-8MnWU2NTM1)** - Connect with users and developers
-- **<Icon size={18} name="Twitter" /> [Follow us on X.com](https://x.com/Aicsertics)** - Stay updated
-- **<Icon size={18} name="Linkedin" /> [LinkedIn](https://www.linkedin.com/company/aicser)** - Professional updates
-- **<Icon size={18} name="FileText" /> [Share Feedback](https://feedback.aicser.com)** - Help us improve
+**New to Aicser?** Follow our [Quick Start Guide](./getting-started/quick-start-docker) for detailed setup instructions.
 
 ---
 
-**Ready to transform your data experience?** [Get Started Now →](./getting-started/quick-start-docker)
+## <Icon size={24} name="Sparkles" /> Key Features
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', margin: '20px 0'}}>
+
+<div>
+
+### Natural Language Queries
+Ask questions in plain English like "Show me sales trends by region" and get instant visualizations.
+
+</div>
+
+<div>
+
+### 30+ Chart Types
+From basic bar charts to advanced heatmaps and real-time streams, powered by ECharts.
+
+</div>
+
+<div>
+
+### Multi-Source Data
+Connect to PostgreSQL, MySQL, MongoDB, CSV, Excel, S3, BigQuery, and more.
+
+</div>
+
+<div>
+
+### Self-Hosted or Cloud
+Full control over your data. Deploy on your infrastructure or use our managed service.
+
+</div>
+
+</div>
+
+---
+
+## <Icon size={24} name="BookOpen" /> Documentation Guide
+
+### <Icon size={20} name="Rocket" /> Getting Started
+Perfect for new users - get up and running quickly.
+
+- [Quick Start with Docker](./getting-started/quick-start-docker) - 5-minute setup
+- [Create Your First Chart](./getting-started/first-chart) - Hands-on tutorial
+- [Demo Walkthrough](./getting-started/demo-walkthrough) - Platform tour
+- [FAQ](./getting-started/faq) - Common questions answered
+
+### <Icon size={20} name="Sparkles" /> Features
+Learn what Aicser can do for your data analysis.
+
+- [AI Capabilities](./features/ai-overview) - Natural language queries & multi-agent system
+- [Charts & Visualizations](./features/charts-overview) - All available chart types
+- [Data Sources](./features/data-sources-overview) - Supported databases and files
+
+### <Icon size={20} name="Server" /> Deployment
+Deploy Aicser in production environments.
+
+- [Self-Hosting Guide](./self-host/) - Production deployment best practices
+- [Docker Configuration](./self-host/docker-compose) - Containerized setup
+
+### <Icon size={20} name="Code" /> Development
+For developers contributing to or extending Aicser.
+
+- [Developer Guide](./developer/developer-index) - Architecture & setup
+- [Community](./community/community-index) - How to contribute
+
+### <Icon size={20} name="Shield" /> Security & Performance
+Enterprise-grade security and optimization.
+
+- [Security Overview](./security/) - Authentication, authorization, and compliance
+- [Performance Tuning](./performance/) - Optimize your deployment
+
+---
+
+## System Requirements
+
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| CPU | 2 cores | 4+ cores |
+| Memory | 4GB | 8GB+ |
+| Storage | 20GB | 100GB+ SSD |
+| OS | Linux, macOS, Windows | Linux (Ubuntu 20.04+) |
+
+---
+
+## <Icon size={24} name="Users" /> Get Help & Connect
+
+- **[FAQ](./getting-started/faq)** - Find quick answers to common questions
+- **[Telegram Community](https://t.me/+XyM6Y-8MnWU2NTM1)** - Chat with users and get support
+- **[Feedback Portal](https://feedback.aicser.com)** - Request features or report issues
+- **[Email Support](mailto:support@aicser.com)** - Enterprise support available
+
+### Follow Us
+- [X.com (@Aicsertics)](https://x.com/Aicsertics)
+- [LinkedIn](https://www.linkedin.com/company/aicser)
+- [GitHub](https://github.com/aiser-platform/aiser-world)
+
+---
+
+:::info Open Source Release Coming Soon
+Aicser Platform is being prepared for open source release. We're working to make the core platform available to the community while maintaining enterprise-grade quality. Join our [Telegram community](https://t.me/+XyM6Y-8MnWU2NTM1) to stay updated!
+:::
+
+**Ready to get started?** [Launch Quick Start →](./getting-started/quick-start-docker)
