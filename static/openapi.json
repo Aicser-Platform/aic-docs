@@ -5,7 +5,7 @@ info:
   description: The Aicser Platform API provides programmatic access to all platform features, from AI-powered chart generation to user management and data analysis. Built with FastAPI and following REST principles, our API is designed for performance, reliability, and ease of integration.
 
 servers:
-  - url: https://api.aicser.com/api
+  - url: https://app.aicser.com/api
     description: Production server
   - url: http://localhost:3000/api
     description: Development server

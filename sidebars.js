@@ -59,7 +59,7 @@ const sidebars = {
       type: 'category',
       label: 'Security',
       collapsed: true,
-      customProps: {
+      customProps: {  
         icon: 'Shield'
       },
       items: [
